@@ -5,12 +5,20 @@
 # include <cstring>
 # include "Contact.hpp"
 
+# define SIZE_BOOK 8
+
 class PhoneBook
 {
-	public:
-		Contact contacts[8];
-
 	private:
+		Contact contacts[SIZE_BOOK];
+		int page;
+		void print_table();
+
+	public:
+		PhoneBook();
+		void add_contact();
+		void search_contact();
+		void ask_contact_detail();
 };
 
 #endif

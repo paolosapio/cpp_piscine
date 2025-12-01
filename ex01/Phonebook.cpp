@@ -2,40 +2,52 @@
 #include "Contact.hpp"
 #include <cstdlib>
 
+PhoneBook::PhoneBook() //contructor esto inicializa la classe
+{
+	page = 0;
+}
 
-// int main(void)
-// {
-// 	std::string buffer;
+void PhoneBook::add_contact()
+{
+	contacts[page].create();
+	// contacts[page].print();
+	page++;
+	if (page == SIZE_BOOK)
+		page = 0;
+}
 
-// 	while (1)
-// 	{
-// 		std::getline(std::cin, buffer);
-// 		if (buffer == "ADD")
-// 		{
-// 			std::cout << "FUNCION1\n";
-// 		}
+void PhoneBook::print_table()
+{
+	int i = 0;
 
-// 		if (buffer == "SEARCH")
-// 		{
-// 			std::cout << "FUNCION2\n";
-// 		}
+	while (i < SIZE_BOOK)
+	{
+		contacts[i].print_row(i);
+		i++;
+	}
+}
 
-// 		if (buffer == "EXIT")
-// 		{
-// 			std::exit(0);
-// 		}
+void PhoneBook::ask_contact_detail()
+{
+	std::string buffer;
+	int number_value;
+// reset:
+	std::cout << "Choose a contact detail [Nº]\n";
+	std::getline(std::cin, buffer);
+	if (!std::cin)
+	{
+		std::cerr << "ERROR\n";
+		std::exit(1);
+	}
+	number_value = std::atoi(buffer.c_str());
+	if (number_value < SIZE_BOOK && number_value >= 0)
+	{
+		contacts[number_value].print();
+	}
+}
 
-// 	}
-// 	return (0);
-
-
-
-
-	
-	// Contact contact;
-	// Contact contact2;
-	// contact.set_firstname("Pepe");
-	// contact2.set_firstname("Hakim");
-	// std::cout << "Contact:" << contact.get_firstname() << std::endl;
-	// std::cout << "Contact:" << contact2.get_firstname() << std::endl;
-// }
+void PhoneBook::search_contact()
+{
+	print_table();
+	ask_contact_detail();
+}
