@@ -1,9 +1,9 @@
 #include "Zombie.hpp"
 
  // contructor:
-Zombie::Zombie(std::string str)
+Zombie::Zombie(std::string name)
 {
-    this->name = str;
+    this->name = name;
 }
 
 // destructor:
@@ -18,3 +18,5 @@ void Zombie::announce()
 {
     std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
+//los metodos de las clases son las funciones internas al cuale se lega a llamar el nombre del objeto?

@@ -1,5 +1,5 @@
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 # include <iostream>
 # include <string>
@@ -28,7 +28,7 @@ La variable privada name
 
 El constructor
 
-El destructor
+El destructor ~
 
 Cualquier función miembro como announce()
 

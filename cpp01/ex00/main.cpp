@@ -3,14 +3,13 @@
 int main(void)
 {
 // zombie en stack
-    Zombie stack_zombie("Luca");
-    stack_zombie.announce();
-    // auto destructor stack
+    randomChump("Luca");
 
 // zombie en heap
     Zombie *heap_zombie = newZombie("Sandro");
     heap_zombie->announce();
     delete heap_zombie;
+    // auto destructor stack
     return (0);
 }
 
