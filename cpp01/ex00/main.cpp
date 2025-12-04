@@ -2,8 +2,13 @@
 
 int main(void)
 {
+// zombie en stack con llamada funcion:
+    randomChump("Paolo");
+    // no llamamos announce (esta ya dentro randomChump)
+
 // zombie en stack
-    randomChump("Luca");
+    Zombie stack_zombie("Luca");
+    stack_zombie.announce();
 
 // zombie en heap
     Zombie *heap_zombie = newZombie("Sandro");
