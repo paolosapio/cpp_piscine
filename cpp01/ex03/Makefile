@@ -1,6 +1,9 @@
-NAME = zombie
+#Exercise 03: Unnecessary violence
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+
+NAME = exercise03
+
+SRCS = main.cpp
 
 CXX = c++
 
@@ -14,7 +17,7 @@ $(NAME) : $(OBJS)
 
 all : $(NAME)
 
-clean :
+clean : 
 	rm -f $(OBJS) $(DEPS)
 
 fclean : clean

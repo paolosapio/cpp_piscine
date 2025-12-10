@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/08 16:53:05 by psapio            #+#    #+#             */
+/*   Updated: 2025/12/09 10:53:44 by psapio           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 void Contact::set_first_name()
 {
 	std::string buffer;
-
 init:
 	std::cout << "FIRST NAME: ";
 	std::getline(std::cin, buffer);
@@ -21,10 +32,28 @@ init:
 	this->_first_name = buffer;
 }
 
+
+
+
+
+
+
+
+
+
+
 std::string Contact::get_first_name()
 {
 	return (this->_first_name);
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -48,10 +77,28 @@ init:
 	this->_last_name = buffer;
 }
 
+
+
+
+
+
+
+
+
+
+
 std::string Contact::get_last_name()
 {
 	return (this->_last_name);
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -76,10 +123,28 @@ init:
 	this->_nickname = buffer;
 }
 
+
+
+
+
+
+
+
+
+
+
 std::string Contact::get_nickname()
 {
 	return (this->_nickname);
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -95,7 +160,6 @@ init:
 		std::cerr << "ERRROR\n";
 		std::exit(1);
 	}
-
 //si algun caracter o eespacioss no es numero
 	int i = 0;
 	while (buffer[i])
@@ -115,10 +179,28 @@ init:
 	this->_phone_number = buffer;
 }
 
+
+
+
+
+
+
+
+
+
+
 std::string Contact::get_phone_number()
 {
 	return (this->_phone_number);
 }
+
+
+
+
+
+
+
+
 
 
 
@@ -142,31 +224,27 @@ init:
 	this->_darkest_secret = buffer;
 }
 
+
+
+
+
+
+
+
+
+
+
 std::string Contact::get_darkest_secret()
 {
 	return (this->_darkest_secret);
 }
 
-void Contact::print_row(int page)
-{
-	if (!_first_name.empty())
-	{
-		std::cout	<< page
-		<< " | "
-		<< _first_name
-		<< " | "
-		<< _last_name
-		<< " | "
-		<< _nickname
-		<< std::endl;
-	}
-}
 
 void Contact::print()
 {
 	if (_first_name.empty())
 	{
-		std::cout << "Empty coontact\n";
+		std::cout << "Empty contact\n";
 		return ;
 	}
 	std::cout << std::endl;

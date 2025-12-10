@@ -1,6 +1,9 @@
-NAME = zombie
+#Exercise 02: HI THIS IS BRAIN
 
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+
+NAME = exercise02
+
+SRCS = main.cpp
 
 CXX = c++
 
@@ -14,7 +17,7 @@ $(NAME) : $(OBJS)
 
 all : $(NAME)
 
-clean :
+clean : 
 	rm -f $(OBJS) $(DEPS)
 
 fclean : clean

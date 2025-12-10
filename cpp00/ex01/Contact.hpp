@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/08 16:53:12 by psapio            #+#    #+#             */
+/*   Updated: 2025/12/09 10:43:22 by psapio           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
@@ -21,14 +33,14 @@ class Contact
 
 	public:
 		void create();
-		void print_row(int page);
+		void print();
+		
 		std::string get_first_name();
 		std::string get_last_name();
 		std::string get_nickname();
 		std::string get_phone_number();
 		std::string get_darkest_secret();
 
-		void print();
 };
 
 #endif

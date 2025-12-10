@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/09 12:33:24 by psapio            #+#    #+#             */
+/*   Updated: 2025/12/09 12:33:25 by psapio           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
@@ -7,7 +19,7 @@
 	class Zombie
 	{
 		private:
-			std::string name;
+			std::string _name;
 
 		public: // métodos de instancia, y announce() usa this->name para imprimir
 			Zombie(std::string name); // Constructor
