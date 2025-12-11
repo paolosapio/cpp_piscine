@@ -1,20 +1,21 @@
 #ifndef HUMANB_HPP
-# define HMANB_HPP
+# define HUMANB_HPP
 
-# include <Weapon.hpp>
+# include "Weapon.hpp"
+# include <iostream>
 
 class HumanB
 {
-private:
-	Weapon		_weapon;
-	std::string	_name;
+	private:
+		std::string	_name;
+		Weapon*		_weapon;
 	
 	public:
-	HumanB(std::string name);
-	~HumanB();
+		HumanB(std::string name);
+		~HumanB();
 
-	void attack(); //<name> attacks with their <weapon type>
-	void setWeapon(Weapon weapon);
+		void attack(); //<name> attacks with their <weapon type>
+		void setWeapon(Weapon &weapon);
 };
 
 #endif

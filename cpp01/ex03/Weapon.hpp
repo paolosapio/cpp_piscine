@@ -12,7 +12,7 @@ class Weapon
 		Weapon(std::string	type);
 		~Weapon();
 
-		const std::string	getType(); // returns a constant reference to type.
+		const std::string	&getType(); // returns a constant reference to type.
 		void		setType(std::string	type);
 };
 
