@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 int main(int argc, char* argv[])
 {
@@ -9,35 +10,40 @@ int main(int argc, char* argv[])
 		return (1);
 	}
 
-	std::string palabra1AKitar;
-	std::string frase;
 	std::ifstream file(argv[1]);
 	std::ofstream file2((std::string(argv[1]) + ".replace").c_str());
-	std::string newFrase;
-
-	size_t pos1;
-	size_t pos2;
-
-	palabra1AKitar = std::string(argv[2]);
-
-	while (std::getline(file, frase))
+	
+	if (!file || !file2)
 	{
-		pos1 = frase.find(palabra1AKitar);
-		if (pos1 != std::string::npos) /* std::string::npos significa <-1 unsigned> */
-		{
-			pos2 = pos1 + palabra1AKitar.length();
-			if (pos1 != 0)
-			{
-				newFrase = frase.substr(0, pos1) + argv[3] + frase.substr(pos2);
-			}
-			else
-			{
-				newFrase = argv[3] + frase.substr(pos2);
-			}
-			file2 << newFrase << std::endl;
-		}
-		else
-			file2 << frase << std::endl;
+		std::cerr << "FILE Error" << std::endl;
+		return (1);
 	}
+
+	std::string palabra_original = std::string(argv[2]);
+
+	if (palabra_original.empty())
+	{
+		std::cerr << "Empty arg Error" << std::endl;
+		return (1);
+	}
+	std::string palabra_nueva = std::string(argv[3]);
+
+	std::string frase;
+	size_t pos_inicial_palabra = 0;
+	std::getline(file, frase, '\0');
+
+buscar_la_palabra:
+	pos_inicial_palabra = frase.find(palabra_original, pos_inicial_palabra);
+	if (pos_inicial_palabra == std::string::npos) /* si no se encuentra la palabra inicial return 0*/
+		goto escribe_frase_entera;
+
+	frase.erase(pos_inicial_palabra, palabra_original.length());
+	frase.insert(pos_inicial_palabra, palabra_nueva);
+
+	pos_inicial_palabra = pos_inicial_palabra + palabra_nueva.length();
+	goto buscar_la_palabra;
+
+escribe_frase_entera:
+	file2 << frase;
 	return (0);
 }

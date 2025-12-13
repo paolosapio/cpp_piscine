@@ -3,7 +3,7 @@
 
 NAME = exercise03
 
-SRCS = main.cpp
+SRCS = HumanA.cpp  HumanB.cpp  main.cpp  Weapon.cpp
 
 CXX = c++
 

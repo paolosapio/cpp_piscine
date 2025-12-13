@@ -14,8 +14,8 @@ int main()
 	{
 		Weapon otraArma = Weapon("pistola");
 		HumanB jim("Pablo");
-		jim.setWeapon(otraArma);
 		jim.attack();
+		jim.setWeapon(otraArma);
 		otraArma.setType("cacahuete envenenado");
 		jim.attack();
 	}

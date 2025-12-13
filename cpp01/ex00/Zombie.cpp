@@ -6,7 +6,7 @@
 /*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:33:29 by psapio            #+#    #+#             */
-/*   Updated: 2025/12/09 12:36:39 by psapio           ###   ########.fr       */
+/*   Updated: 2025/12/13 21:02:41 by psapio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,11 @@ Zombie::Zombie(std::string name)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // destructor:
 Zombie::~Zombie()
 {
     std::cout << "DESTRUCTOR: " << this->_name << " destruido" << std::endl;
 }
-
-
-
 
 
 

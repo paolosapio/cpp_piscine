@@ -6,7 +6,7 @@
 /*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:48:14 by psapio            #+#    #+#             */
-/*   Updated: 2025/12/09 14:48:15 by psapio           ###   ########.fr       */
+/*   Updated: 2025/12/13 21:06:26 by psapio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ Zombie::~Zombie()
 {
 	static int i = 1;
 
-	std::cout << "ZOMBIE: " << i << " is DEAD" << std::endl;
+	std::cout << "ZOMBIE: " << i << " is DEAD " << std::endl;
 	i++;
 }
+
+
 
 void Zombie::setZombieName(std::string name)
 {
