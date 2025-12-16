@@ -1,7 +1,7 @@
-#Exercise 05: HARL
+#Exercise 06: HARL
 
 
-NAME = Exercise05
+NAME = harlFilter
 
 SRCS = main.cpp Harl.cpp
 

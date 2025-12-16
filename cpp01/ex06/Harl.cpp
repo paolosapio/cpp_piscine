@@ -4,15 +4,15 @@
 
 void Harl::complain(std::string level) //DEBUG : llma la funcion debug
 {
-	void (Harl::*funk_array[4])(void) =
+
+/* 	void (Harl::*funk_array[4])(void) =
 	{
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
 		&Harl::error
 	};
-
-
+ */
 
 	std::string string_array[4] = 
 	{
@@ -22,17 +22,32 @@ void Harl::complain(std::string level) //DEBUG : llma la funcion debug
 		"ERROR"
 	};
 
-	//	asi se llama la funcion del array:
-	//		(this->*funk_array[0])()
 	int cases = 0;
 	while (cases < 4)
 	{
 		if (string_array[cases] == level)
 		{
-			(this->*funk_array[cases])();
 			break ;
 		}
 		cases++;
+	}
+
+	switch (cases)
+	{
+		case 0:
+			this->debug();
+
+		case 1:
+			this->info();
+
+		case 2:
+			this->warning();
+
+		case 3:
+			this->error();
+			break ;
+		default:
+			std::cerr << "PON: <DEBUG> <INFO> <WARNING> <ERROR> para probar!\n";
 	}
 }
 
