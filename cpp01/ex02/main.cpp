@@ -6,7 +6,7 @@ int main(void)
 
 	std::string *stringPTR = &frase;
 	std::string &stringREF = frase;
-	
+
 	std::cout << "frase      " << &frase << std::endl;
 	std::cout << "puntero    " << stringPTR << std::endl;
 	std::cout << "referencia " << &stringREF << std::endl;
@@ -14,7 +14,6 @@ int main(void)
 	std::cout << "frase      " << frase << std::endl;
 	std::cout << "puntero    " << *stringPTR << std::endl;
 	std::cout << "referencia " << stringREF << std::endl;
-
 
 	std::string stringCPY = frase;
 	stringCPY[2] = 'A';
@@ -24,6 +23,10 @@ int main(void)
 
 	std::cout << "puntero    " << *stringPTR << std::endl;
 	std::cout << "referencia " << stringREF << std::endl;
+
+	// &stringREF = stringCPY; esto por ejeemplo no se puede hacer
+	// std::cout << "ref2    " << stringREF << std::endl;
+	// std::cout << "frase    " << frase << std::endl;
 	
 	return  (0);
 }

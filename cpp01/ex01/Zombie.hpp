@@ -6,7 +6,7 @@
 /*   By: psapio <psapio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:48:11 by psapio            #+#    #+#             */
-/*   Updated: 2025/12/09 14:48:12 by psapio           ###   ########.fr       */
+/*   Updated: 2025/12/16 15:22:53 by psapio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Zombie
 
 		void announce(); //imprime el "nombre": BraiiiiiiinnnzzzZ...
 		void setZombieName(std::string name);
-	};
+};
 
 Zombie* zombieHorde(int N, std::string name);
 
