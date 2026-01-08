@@ -24,7 +24,7 @@ Fixed::Fixed(const float nb_float) : _fpn(roundf(nb_float * (1 << _fractional)))
 }
 
 /* ---------------------------copy assignemet operator---------------------------*/
-Fixed &Fixed::operator=(const Fixed &other)
+Fixed& Fixed::operator=(const Fixed &other)
 {
 	std::cout << "Copy assignemet operator called\n"; // y si no existe other?!?!
 	this->_fpn = other._fpn;
@@ -32,125 +32,154 @@ Fixed &Fixed::operator=(const Fixed &other)
 }
 
 
-/* ---------------------------compare operator--------------------------- */
+/* --------------------------Operadores de comparacion-------------------------- */
 bool Fixed::operator>(const Fixed &other)
 {
-	if (this->_fpn > other._fpn) 
-		return (false);
-	return (true);
+	if (this->_fpn > other._fpn)
+		return (true);
+	return (false);
 }
 
 bool Fixed::operator<(const Fixed &other)
 {
 	if (this->_fpn < other._fpn) 
-		return (false);
-	return (true);
+		return (true);
+	return (false);
 }
 
-Fixed &operator>=(const Fixed &other)
+bool Fixed::operator>=(const Fixed &other)
 {
-
+	if (this->_fpn >= other._fpn) 
+		return (true);
+	return (false);
 }
 
-Fixed &operator<=(const Fixed &other)
+bool Fixed::operator<=(const Fixed &other)
 {
-
+	if (this->_fpn <= other._fpn) 
+		return (true);
+	return (false);
 }
 
-Fixed &operator==(const Fixed &other)
+bool Fixed::operator==(const Fixed &other)
 {
-
+	if (this->_fpn == other._fpn) 
+		return (true);
+	return (false);
 }
 
-Fixed &operator!=(const Fixed &other)
+bool Fixed::operator!=(const Fixed &other)
 {
-
+	if (this->_fpn != other._fpn) 
+		return (true);
+	return (false);
 }
 
 
 
 /* ---------------------------aritmeticos operator--------------------------- */
-Fixed &operator+(const Fixed &other)
+Fixed& Fixed::operator+(const Fixed &other)
 {
-
+	this->_fpn = this->_fpn + other._fpn;
+	return (*this);
 }
 
-Fixed &operator-(const Fixed &other)
+Fixed& Fixed::operator-(const Fixed &other)
 {
-
+	this->_fpn = this->_fpn - other._fpn;
+	return (*this);
 }
 
-Fixed &operator*(const Fixed &other)
+Fixed& Fixed::operator*(const Fixed &other)
 {
-
+	this->_fpn = this->_fpn * other._fpn * (1 >> this->_fractional);
+	return (*this);
 }
 
-Fixed &operator/(const Fixed &other)
+Fixed& Fixed::operator/(const Fixed &other)
 {
+	if (other._fpn != 0)
+	{
+		this->_fpn = (this->_fpn / other._fpn) * (1 >> this->_fractional);
+		return (*this);
+	}
 
-}
-
-
-
-
-/* ---------------------------SUMAR pre operator--------------------------- */
-Fixed &operator++()
-{
-
-}
-
-/* ---------------------------SUMAR post operator--------------------------- */
-Fixed operator++(int)
-{
-
-}
-
-/* ---------------------------RESTAR pre operator--------------------------- */
-Fixed &operator--()
-{
-
-}
-
-/* ---------------------------RESTAR post operator--------------------------- */
-Fixed operator--(int)
-{
-
+	return (*this);
 }
 
 
 
-/* ---------------------------Destructir por defecto--------------------------- */
+/* --------------------------OPERADORES ITERATVOS--------------------------- */
+// pre SUMAR
+Fixed &Fixed::operator++()
+{
+	this->_fpn++;
+	return (*this);
+}
+
+// post SUMAR
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	this->_fpn++;
+	return (tmp);
+}
+
+// pre RESTAR
+Fixed& Fixed::operator--()
+{
+	this->_fpn--;
+	return (*this);
+}
+
+// post RESTAR
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	this->_fpn--;
+	return (tmp);
+}
+
+
+
+// /* ---------------------------Getter - Setter--------------------------- */
+int Fixed::getRawBits(void) const
+{
+	std::cout << "getRawBits member function called\n";
+	return (_fpn);
+}
+
+void Fixed::setRawBits(const int raw)
+{
+	_fpn = raw;
+}
+
+
+
+// /* ---------------------------CONVERT TYPE--------------------------- */
+float Fixed::toFloat(void) const
+{
+	return (float(_fpn) / float(1 << _fractional));
+}
+
+int Fixed::toInt(void) const
+{
+	return (int(_fpn) / int(1 << _fractional));
+}
+
+
+
+// /* ---------------------------out stream--------------------------- */
+std::ostream &operator<<(std::ostream &out, const Fixed &right)
+{
+	out << right.toFloat();
+	return (out);
+}
+
+
+
+/* ------------------------Destructor por defecto----------------------- */
 Fixed::~Fixed()
 {
     std::cout << "Destructor called\n";
-
 }
-
-
-
-int getRawBits(void) const
-{
-
-}
-
-void setRawBits(int const raw)
-{
-
-}
-
-float toFloat(void) const
-{
-
-}
-
-int toInt(void) const
-{
-
-}
-
-std::ostream &operator<<(std::ostream &out, const Fixed &right)
-{
-
-}
-
-

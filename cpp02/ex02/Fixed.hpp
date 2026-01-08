@@ -9,13 +9,15 @@ class Fixed
 private:
 	int _fpn; //fied point number
 	static const int _fractional = 8;
-	
+
 public:
-	Fixed();                    //contructor por defecto
-	Fixed(const Fixed &other);  //copy construccotr
+	Fixed();	//contructor por defecto
+	Fixed(const Fixed &other);	//copy construccotr
+
 	Fixed(const int nb_integer);
 	Fixed(const float nb_float);
 
+	static Fixed &max(const Fixed &a, const Fixed &b); 
 	Fixed &operator=(const Fixed &other); //copy assignemet operator
 
 	bool operator>(const Fixed &other); //compare operator

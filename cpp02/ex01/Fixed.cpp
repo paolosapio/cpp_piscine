@@ -2,28 +2,28 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(const float nb_float) : fpn(static_cast<int>(roundf(nb_float * (1 << fractional))))
-{                                 // fpn(nb_float * float(1 << fractional) + (nb_float >= 0 ? 0.5 : -0.5))
+Fixed::Fixed(const float nb_float) : _fpn(static_cast<int>(roundf(nb_float * (1 << _fractional))))
+{                                 // _fpn(nb_float * float(1 << fractional) + (nb_float >= 0 ? 0.5 : -0.5))
 	std::cout << "Float constructor called\n";
 }
 
 
 
-Fixed::Fixed(const int nb_integer) : fpn(nb_integer * int(1 << fractional))
+Fixed::Fixed(const int nb_integer) : _fpn(nb_integer * int(1 << _fractional))
 {
 	std::cout << "Int constructor called\n";
 }
 
 
 
-Fixed::Fixed() : fpn(0)
+Fixed::Fixed() : _fpn(0)
 {
 	std::cout << "Default constructor called\n";
 }
 
 
 
-Fixed::Fixed(const Fixed &other) : fpn(other.fpn)
+Fixed::Fixed(const Fixed &other) : _fpn(other._fpn)
 {
 	// Copy constructor implementation
 	std::cout << "Copy constructor called\n";
@@ -61,7 +61,7 @@ Fixed::~Fixed()
 
 void Fixed::setRawBits(const int raw)
 {
-	fpn = raw;
+	_fpn = raw;
 }
 
 
@@ -69,19 +69,19 @@ void Fixed::setRawBits(const int raw)
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called\n";
-	return (fpn);
+	return (_fpn);
 }
 
 
 
 float Fixed::toFloat(void) const
 {
-	return (float(fpn) / float(1 << fractional));
+	return (float(_fpn) / float(1 << _fractional));
 }
 
 
 
 int Fixed::toInt(void) const
 {
-	return (int(fpn) / int(1 << fractional));
+	return (int(_fpn) / int(1 << _fractional));
 }
