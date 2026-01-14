@@ -10,7 +10,7 @@ int main(void)
 	
 	std::cout << std::endl;
 
-	std::cout << "a is " << a << std::endl;
+	(((std::cout << "a is ") << a) << std::endl);
 	std::cout << "b is " << b << std::endl;
 	std::cout << "c is " << c << std::endl;
 	std::cout << "d is " << d << std::endl;

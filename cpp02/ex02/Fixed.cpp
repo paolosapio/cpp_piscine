@@ -3,14 +3,14 @@
 /* ---------------------------contructor por defecto--------------------------- */
 Fixed::Fixed() : _fpn(0)
 {
-	std::cout << "Default constructor called\n";
+	// std::cout << "Default constructor called\n";
 }
 
 
 /* ---------------------------copy construccotr--------------------------- */
 Fixed::Fixed(const Fixed &other)  : _fpn(other._fpn)
 {
-	std::cout << "Copy constructor called\n";
+	// std::cout << "Copy constructor called\n";
 }
 
 
@@ -26,7 +26,7 @@ Fixed::Fixed(const float nb_float) : _fpn(roundf(nb_float * (1 << _fractional)))
 /* ---------------------------copy assignemet operator---------------------------*/
 Fixed& Fixed::operator=(const Fixed &other)
 {
-	std::cout << "Copy assignemet operator called\n"; // y si no existe other?!?!
+	// std::cout << "Copy assignemet operator called\n"; // y si no existe other?!?!
 	this->_fpn = other._fpn;
 	return (*this);
 }
@@ -35,9 +35,7 @@ Fixed& Fixed::operator=(const Fixed &other)
 /* --------------------------Operadores de comparacion-------------------------- */
 bool Fixed::operator>(const Fixed &other)
 {
-	if (this->_fpn > other._fpn)
-		return (true);
-	return (false);
+	return (this->_fpn > other._fpn);
 }
 
 bool Fixed::operator<(const Fixed &other)
@@ -77,6 +75,40 @@ bool Fixed::operator!=(const Fixed &other)
 
 
 
+/* ------------- (overloaded member function) ------------ */
+
+// MAX VALUE
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() > b.getRawBits())
+		return (a);
+	return (b);
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() > b.getRawBits())
+		return (a);
+	return (b);
+}
+
+// MIN VALUE
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() < b.getRawBits())
+		return (a);
+	return (b);
+}
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.getRawBits() < b.getRawBits())
+		return (a);
+	return (b);
+}
+
+
+
 /* ---------------------------aritmeticos operator--------------------------- */
 Fixed& Fixed::operator+(const Fixed &other)
 {
@@ -92,7 +124,7 @@ Fixed& Fixed::operator-(const Fixed &other)
 
 Fixed& Fixed::operator*(const Fixed &other)
 {
-	this->_fpn = this->_fpn * other._fpn * (1 >> this->_fractional);
+	this->_fpn = (this->_fpn * other._fpn) / (1 << this->_fractional);
 	return (*this);
 }
 
@@ -100,7 +132,7 @@ Fixed& Fixed::operator/(const Fixed &other)
 {
 	if (other._fpn != 0)
 	{
-		this->_fpn = (this->_fpn / other._fpn) * (1 >> this->_fractional);
+		this->_fpn = ((this->_fpn << this->_fractional) / other._fpn);
 		return (*this);
 	}
 
@@ -145,7 +177,7 @@ Fixed Fixed::operator--(int)
 // /* ---------------------------Getter - Setter--------------------------- */
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called\n";
+	// std::cout << "getRawBits member function called\n";
 	return (_fpn);
 }
 
@@ -164,7 +196,7 @@ float Fixed::toFloat(void) const
 
 int Fixed::toInt(void) const
 {
-	return (int(_fpn) / int(1 << _fractional));
+	return (_fpn / 1 << _fractional);
 }
 
 
@@ -181,5 +213,5 @@ std::ostream &operator<<(std::ostream &out, const Fixed &right)
 /* ------------------------Destructor por defecto----------------------- */
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called\n";
+    // std::cout << "Destructor called\n";
 }

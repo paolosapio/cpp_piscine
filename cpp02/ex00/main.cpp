@@ -1,6 +1,4 @@
-// Created by tde-sous on 11/29/23.
 #include "Fixed.hpp"
-#include <iostream>
 
 int main(void)
 {

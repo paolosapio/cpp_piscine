@@ -17,20 +17,31 @@ public:
 	Fixed(const int nb_integer);
 	Fixed(const float nb_float);
 
-	static Fixed &max(const Fixed &a, const Fixed &b); 
-	Fixed &operator=(const Fixed &other); //copy assignemet operator
+	// static significa que este metodo se puede utilizar sin declar el objeto entrando atrave de namespace (en este caso Fixed::)
+	// MAX VALUE
+	static const Fixed &max(const Fixed &a, const Fixed &b);
+	static Fixed &max( Fixed &a,  Fixed &b);
 
-	bool operator>(const Fixed &other); //compare operator
-	bool operator<(const Fixed &other); //compare operator
-	bool operator>=(const Fixed &other); //compare operator
-	bool operator<=(const Fixed &other); //compare operator
-	bool operator==(const Fixed &other); //compare operator
-	bool operator!=(const Fixed &other); //compare operator
+	// MIN VALUE
+	static const Fixed &min(const Fixed &a, const Fixed &b);
+	static Fixed &min(Fixed &a, Fixed &b);
 
-	Fixed &operator+(const Fixed &other); //aritmeticos operator
-	Fixed &operator-(const Fixed &other); //aritmeticos operator
-	Fixed &operator*(const Fixed &other); //aritmeticos operator
-	Fixed &operator/(const Fixed &other); //aritmeticos operator
+	//copy assignemet operator
+	Fixed &operator=(const Fixed &other);
+
+	//compare operator
+	bool operator>(const Fixed &other); 
+	bool operator<(const Fixed &other); 
+	bool operator>=(const Fixed &other); 
+	bool operator<=(const Fixed &other); 
+	bool operator==(const Fixed &other); 
+	bool operator!=(const Fixed &other); 
+
+	//aritmeticos operator
+	Fixed &operator+(const Fixed &other);
+	Fixed &operator-(const Fixed &other);
+	Fixed &operator*(const Fixed &other);
+	Fixed &operator/(const Fixed &other);
 
 	Fixed &operator++();    //SUMAR pre operator
 	Fixed operator++(int);  //SUMAR post operator

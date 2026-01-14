@@ -6,8 +6,8 @@
 class Fixed 
 {
 private:
-    int fpn; //fixed point number
-    static const int fractional = 8; // static es como una global 
+    int _fpn; //fixed point number
+    static const int fractional = 8; // static es como una global
 
 public:
     Fixed();                              // Default Constructor
@@ -15,9 +15,8 @@ public:
     Fixed &operator=(const Fixed &other); // Copy Assignment Operator
     ~Fixed();                             // Destructor
 
-
     int getRawBits(void) const;           //geter
     void setRawBits(int const raw);        //seter
 };
 
-#endif // EX00_FIXED_HPP
+#endif

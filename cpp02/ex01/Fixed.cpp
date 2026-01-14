@@ -1,6 +1,4 @@
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 Fixed::Fixed(const float nb_float) : _fpn(static_cast<int>(roundf(nb_float * (1 << _fractional))))
 {                                 // _fpn(nb_float * float(1 << fractional) + (nb_float >= 0 ? 0.5 : -0.5))
@@ -23,17 +21,17 @@ Fixed::Fixed() : _fpn(0)
 
 
 
+// Copy constructor implementation
 Fixed::Fixed(const Fixed &other) : _fpn(other._fpn)
 {
-	// Copy constructor implementation
 	std::cout << "Copy constructor called\n";
 }
 
 
 
+// Copy assignment operator implementation
 Fixed &Fixed::operator=(const Fixed &other)
 {
-	// Copy assignment operator implementation
 	std::cout << "Copy assignment operator called\n";
 	if (this == &other)
 	return *this;
@@ -51,9 +49,9 @@ std::ostream &operator<<(std::ostream &out, const Fixed &right)
 
 
 
+// Destructor implementation
 Fixed::~Fixed()
 {
-	// Destructor implementation
 	std::cout << "Destructor called\n";
 }
 
@@ -74,14 +72,18 @@ int Fixed::getRawBits(void) const
 
 
 
-float Fixed::toFloat(void) const
+/* float Fixed::toFloat(void) const
 {
 	return (float(_fpn) / float(1 << _fractional));
+} */
+float Fixed::toFloat(void) const
+{
+	float ret = float(this->_fpn) / float((1 << _fractional));
+	return (ret);
 }
-
 
 
 int Fixed::toInt(void) const
 {
-	return (int(_fpn) / int(1 << _fractional));
+	return (_fpn >> _fractional);
 }
