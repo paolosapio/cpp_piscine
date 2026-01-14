@@ -1,16 +1,13 @@
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap bot1("HojaLata_Bot");
-	ScavTrap bot2("Yataman");
+	FragTrap bot1("r2d2");
+	ClapTrap bot2(bot1);
 
-	bot2 = bot1;
-
-	bot1.guardGate();
-	// ScavTrap bot2("cacharro");
-
-	bot1.attack("CACA_BOT");
-	// bot1.getName();
+	bot1.attack("Mazinger");
+	bot1.takeDamage(330);
+	bot1.highFivesGuys();
 	return (0);
 }

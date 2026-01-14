@@ -1,6 +1,6 @@
-NAME = scav-trap
+NAME = frag-trap
 
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 CXX = c++
 

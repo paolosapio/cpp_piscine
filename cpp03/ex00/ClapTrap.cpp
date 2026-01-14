@@ -54,6 +54,7 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	std::cout << "el bot " << _name << " ha recibido ataque de " << amount << "\n";
 	_hit_points = _hit_points - amount;
 }
 
