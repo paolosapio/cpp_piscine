@@ -5,9 +5,9 @@ int main()
 	ClapTrap bot_a("pepe_bot");
 
 
-	bot_a.takeDamage(-10);
+	bot_a.takeDamage(5);
 
-	std::cout << bot_a.getName() << " TIENE: " << bot_a.getHitPoint() << " \n";
+	std::cout << bot_a.getName() << " TIENE: " << bot_a.getHitPoint() << " de vidas \n";
 
 	bot_a.attack("CACA_BOT");
 

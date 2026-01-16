@@ -1,7 +1,8 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal("CAT")
+Cat::Cat() //: Animal("CAT")
 {
+	_brain = new Brain;
 	std::cout << "CAT CONTRUIDO\n";
 }
 
@@ -29,7 +30,7 @@ Cat& Cat::operator=(const Cat& other)
 Cat::~Cat()
 {
 	std::cout << "CAT DESTRUIDO\n";
-
+	delete _brain;
 }
 
 

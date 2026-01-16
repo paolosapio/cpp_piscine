@@ -7,10 +7,10 @@ int main()
 
 	bot2 = bot1;
 
-	bot1.guardGate();
-	// ScavTrap bot2("cacharro");
+	bot2.guardGate();
+	//ScavTrap bot2("cacharro");
 
 	bot1.attack("CACA_BOT");
-	// bot1.getName();
+	std::cout << bot1.getName() << "\n";
 	return (0);
 }

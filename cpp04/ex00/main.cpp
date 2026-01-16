@@ -6,6 +6,7 @@
 
 int main()
 {
+
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();
@@ -16,8 +17,10 @@ int main()
 	std::cout << cat1.getType() << "\n";
 
 	std::cout << s->getType() << " " << std::endl;
-	s->makeSound(); //will output the WrongAnimal sound! NO estamos utilizando la funcion de Wrong cat porque la de wronganimal no es virtual!
-
+	s->makeSound();
+	//will output the WrongAnimal sound!
+	//NO estamos utilizando la funcion de Wrong
+	//cat porque la de wronganimal no es virtual!
 
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();

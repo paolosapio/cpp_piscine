@@ -13,7 +13,7 @@ ClapTrap::ClapTrap(const std::string name, int hit_points, int energy_points, in
 }
 
 
-ClapTrap::ClapTrap() : _name("mazinga"), _hit_points(10), _energy_points(10), _attack_damage(0) //! OJO y si no esta iinizializada una
+ClapTrap::ClapTrap() : _name("mazinga"), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
 	std::cout << "CLAP TRAP: CONSTRUCTOR " << _name << "\n";
 }

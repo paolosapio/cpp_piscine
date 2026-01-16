@@ -32,8 +32,10 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 
 void ScavTrap::guardGate()
 {
-	if (_hit_points <= 0)
+	if (this->_hit_points <= 0)
 		std::cout << "el Scav esta muertisimo\n";
+	else if (this->_energy_points <= 0)
+		std::cout << "el Scav esta sin energia\n";
 	else
 		std::cout << "SCAV TRAP: ESCUDO ACTIVADO!🛡️ " << _name << "\n";
 }

@@ -19,8 +19,8 @@ Animal::Animal(const Animal& other)
 
 Animal& Animal::operator=(const Animal& other)
 {
-	//! if (this != &other) verificar porque esta protecion es necesaria (Davida aviles te lo explica)
-		_type = other._type;
+	if (this != &other)
+		this->_type = other._type;
 	return (*this);
 }
 
@@ -38,7 +38,7 @@ Animal::~Animal()
 
 std::string Animal::getType() const
 {
-	return (_type);
+	return (this->_type);
 }
 
 

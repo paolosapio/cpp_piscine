@@ -4,13 +4,13 @@
 
 ClapTrap::ClapTrap() : _name("botRobo_bot"), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-	std::cout << "CLAP TRAP: CONSTRUCTOR: " << _name << "\n";
+	std::cout << "CLAP TRAP: CONTRUIDO CON NOMBRE: " << _name << "\n";
 }
 
 
 ClapTrap::ClapTrap(const std::string name) : _name(name), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-	std::cout << "CLAP TRAP: NAME ASSIGNER: " << _name << "\n";
+	std::cout << "CLAP TRAP: SE le assigna el nombre: " << _name << "\n";
 
 }
 
@@ -18,13 +18,13 @@ ClapTrap::ClapTrap(const std::string name) : _name(name), _hit_points(10), _ener
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
 	*this = other;
-	std::cout << "CLAP TRAP: COPY" << _name << "\n";
+	std::cout << "CLAP TRAP: COPYNAME IS: " << _name << "\n";
 }
 
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "CLAP TRAP: DESTRUCTOR CALLED" << _name << "\n";
+	std::cout << "CLAP TRAP: DESTRUYE: " << _name << "\n";
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
@@ -33,29 +33,33 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 	_hit_points = other._hit_points;
 	_energy_points = other._energy_points;
 	_attack_damage = other._attack_damage;
-	std::cout << "CLAP TRAP: operator= CALLED" << _name << "\n";
+	std::cout << "CLAP TRAP: operator= CALLED DEL BOT: " << _name << "\n";
 	return (*this);
 }
 
 void ClapTrap::attack(const std::string& target)
 {
 	if (this->_hit_points <= 0)
-		std::cout << "el bicho esta muertisimo\n";
+		std::cout << _name << " NO PUEDE ATACAR PORUQE esta muertisimo\n";
 	else if (this->_energy_points <= 0)
-		std::cout << "el bicho esta sin energia\n";
+		std::cout << _name << " NO PUEDE ATACAR PORUQE NOT ENERGY\n";
 	else
 	{
 		_energy_points--;
-		std::cout << "el bicho " << _name << " ATACAaAAAAaAAAAA a " << target << " de " << _attack_damage << "\n";
+		std::cout << _name << " ATACAaAAAAaAAAAA a " << target << " de " << _attack_damage << "\n";
 	}
 
 	
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount) //20
 {
+	if (amount >= _hit_points)
+		_hit_points = 0;
+	else
+		_hit_points = _hit_points - amount;
+	
 	std::cout << "el bot " << _name << " ha recibido ataque de " << amount << "\n";
-	_hit_points = _hit_points - amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -64,12 +68,12 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	if (_energy_points <= 0)
 	{
-		std::cout << "el bicho esta sin energia\n";
+		std::cout  << _name << " esta sin energia\n";
 		return ;
 	}
 	_hit_points = _hit_points + amount;
 	_energy_points--;
-	std::cout << "el bicho se esta REPARANDO de " << amount << "\n";
+	std::cout << _name << " se esta REPARANDO de " << amount << "\n";
 
 }
 
