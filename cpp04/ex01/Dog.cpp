@@ -1,14 +1,16 @@
 #include "Dog.hpp"
 
-Dog::Dog() : Animal("DOG")
+Dog::Dog() //: Animal("Dog")
 {
-	std::cout << "DOG CONTRUIDO\n";
+	_brain = new Brain();
+	std::cout << "Dog CONTRUIDO\n";
 }
 
 
 Dog::Dog(const std::string name) : Animal(name)
 {
-	std::cout << "DOG CONTRUIDO\n";
+	_brain = new Brain();
+	std::cout << "Dog CONTRUIDO\n";
 }
 
 
@@ -17,25 +19,28 @@ Dog::Dog(const Dog& other)
 	*this = other;
 }
 
+
 Dog& Dog::operator=(const Dog& other)
 {
-	//! if (this != &other) verificar porque esta protecion es necesaria (Davida aviles te lo explica)
+	if (this != &other)
+	{
 		_type = other._type;
+		_brain = other._brain;
+	}
+
 	return (*this);
 }
 
 
-
 Dog::~Dog()
 {
-	std::cout << "DOG DESTRUIDO\n";
-
+	std::cout << "Dog DESTRUIDO\n";
+	delete _brain;
 }
-
 
 
 void Dog::makeSound() const
 {
-	std::cout << "DOG DICE: GUAUUUU\n";
+	std::cout << "Dog DICE: MIAOOOO\n";
 }
 

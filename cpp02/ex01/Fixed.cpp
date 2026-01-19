@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed(const float nb_float) : _fpn(static_cast<int>(roundf(nb_float * (1 << _fractional))))
+Fixed::Fixed(const float nb_float) : _fpn(roundf(nb_float * (1 << _fractional)))
 {                                 // _fpn(nb_float * float(1 << fractional) + (nb_float >= 0 ? 0.5 : -0.5))
 	std::cout << "Float constructor called\n";
 }

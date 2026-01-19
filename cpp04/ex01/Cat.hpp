@@ -10,6 +10,7 @@ class Cat : public Animal
 {
 private:
 	Brain* _brain;
+
 public:
 	Cat();
 	Cat(const std::string name);

@@ -9,7 +9,6 @@ private:
 	std::string _ideas[100];
 public:
 	Brain();
-	Brain(const std::string name);
 	Brain(const Brain& other);
 	
 	~Brain();

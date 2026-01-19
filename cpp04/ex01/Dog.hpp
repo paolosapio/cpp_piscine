@@ -2,12 +2,14 @@
 # define DOG_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 # include <iostream>
 
 class Dog : public Animal
 {
-protected:
+private:
+	Brain*	_brain;
 
 public:
 	Dog();
