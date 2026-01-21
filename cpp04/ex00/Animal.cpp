@@ -28,7 +28,7 @@ Animal& Animal::operator=(const Animal& other)
 
 Animal::~Animal()
 {
-	std::cout << "ANIMAL DESTRUIDO\n";
+	std::cout << "ANIMAL " << this->_type <<" DESTRUIDO\n";
 
 }
 

@@ -1,6 +1,6 @@
-NAME = brain
+NAME = Bureaucrat
 
-SRCS = main.cpp Animal.cpp  Dog.cpp Cat.cpp Brain.cpp
+SRCS = Bureaucrat.cpp main.cpp
 
 CXX = c++
 

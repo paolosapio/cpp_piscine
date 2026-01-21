@@ -1,6 +1,14 @@
 #ifndef ANIMAL_HPP
 #define ANIMAL_HPP
 
+/*
+NO OLVIDAR: Orthodox Canonical Form
+• Default constructor
+• Copy constructor
+• Copy assignment operator
+• Destructor
+*/
+
 # include <iostream>
 
 class Animal

@@ -1,13 +1,13 @@
 #include "Dog.hpp"
 
-Dog::Dog() //: Animal("Dog")
+Dog::Dog() //: AAnimal("Dog")
 {
 	_brain = new Brain();
 	std::cout << "Dog CONTRUIDO\n";
 }
 
 /* 
-Dog::Dog(const std::string name) : Animal(name)
+Dog::Dog(const std::string name) : AAnimal(name)
 {
 	_brain = new Brain();
 	std::cout << "Dog CONTRUIDO\n";

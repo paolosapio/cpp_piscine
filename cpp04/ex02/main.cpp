@@ -1,11 +1,11 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 
 int main()
 {
 	int n_animals = 6;
-	Animal *animals[n_animals];
+	AAnimal *animals[n_animals];
 
 	for (int i = 0; i < n_animals; ++i)
 	{
@@ -16,7 +16,7 @@ int main()
 
 		animals[i]->makeSound();
 	}
-
+	
 	for (int i = 0; i < n_animals; i++)
 		delete (animals[i]);
 	return (0);
@@ -24,8 +24,8 @@ int main()
 
 // int main()
 // {
-// 	const Animal* j = new Dog();
-// 	const Animal* i = new Cat();
+// 	const AAnimal* j = new Dog();
+// 	const AAnimal* i = new Cat();
 // 	delete j;//should not create a leak
 // 	delete i;
 // 	return 0;
@@ -42,7 +42,7 @@ for (int i = 0; i < 6; ++i)
 }
 
 
-Esto funciona solo si el destructor de Animal es virtual
+Esto funciona solo si el destructor de AAnimal es virtual
 (que en CPP04 ex01 DEBE SERLO).
 
 📌 Regla de oro en C++
@@ -56,19 +56,19 @@ Nunca mezclar.
 
 Ejemplo correcto:
 
-Animal *animals = new Animal[6];
+AAnimal *animals = new AAnimal[6];
 delete[] animals;
 
 
 ⚠️ PERO esto NO sirve para polimorfismo, porque:
 
-Todos serían Animal
+Todos serían AAnimal
 
 No puedes meter Dog y Cat distintos
 
 Por eso en CPP04 SIEMPRE se usa:
 
-Animal* animals[6];
+AAnimal* animals[6];
 
 
 y se borra uno a uno.

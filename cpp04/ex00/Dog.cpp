@@ -6,10 +6,10 @@ Dog::Dog() : Animal("DOG")
 }
 
 
-Dog::Dog(const std::string name) : Animal(name)
+/* Dog::Dog(const std::string name) : Animal(name)
 {
 	std::cout << "DOG CONTRUIDO\n";
-}
+} */
 
 
 Dog::Dog(const Dog& other)
@@ -19,7 +19,7 @@ Dog::Dog(const Dog& other)
 
 Dog& Dog::operator=(const Dog& other)
 {
-	//! if (this != &other) verificar porque esta protecion es necesaria (Davida aviles te lo explica)
+	if (this != &other)
 		_type = other._type;
 	return (*this);
 }

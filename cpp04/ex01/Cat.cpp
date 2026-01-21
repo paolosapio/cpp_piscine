@@ -3,16 +3,16 @@
 Cat::Cat() //: Animal("CAT")
 {
 	_brain = new Brain();
-	std::cout << "CAT CONTRUIDO\n";
+	std::cout << "CAT CONTRUIDO con su Brain\n";
 }
 
-
+/* 
 Cat::Cat(const std::string name) : Animal(name)
 {
 	_brain = new Brain();
 	std::cout << "CAT CONTRUIDO\n";
 }
-
+ */
 
 Cat::Cat(const Cat& other)
 {
