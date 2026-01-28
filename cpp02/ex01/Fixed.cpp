@@ -41,7 +41,7 @@ Fixed &Fixed::operator=(const Fixed &other)
 
 
 
-std::ostream &operator<<(std::ostream &out, const Fixed &right)
+std::ostream& operator<<(std::ostream &out, const Fixed &right)
 {
 	out << right.toFloat();
 	return (out);
