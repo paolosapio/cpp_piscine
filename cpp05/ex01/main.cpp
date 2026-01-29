@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include <iostream>
 
 void	caca(void) //throw() // este throw es una promesa que no le pasamos exepciones!
@@ -10,28 +11,20 @@ void	caca(void) //throw() // este throw es una promesa que no le pasamos exepcio
 
 int main(void)
 {
-/*  */
+
+	Form form("form01", 200, 200);
+
 	try
 	{
-		Bureaucrat pepe("pepe", 50);
+		Bureaucrat pepe("pepe", 3);
+		form.beSigned(pepe);
 	}
 	catch (std::exception &e)
 	{
 		std::cout << e.what() << "\n";
 	}
+	
 	return 0;
-
-/*
-	try
-	{
-		caca();
-		std::cout << "El código sigue\n";
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what();
-	}
-*/
 
 
 }

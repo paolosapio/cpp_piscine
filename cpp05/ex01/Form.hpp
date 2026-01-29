@@ -12,8 +12,6 @@ NO OLVIDAR: Orthodox Canonical Form
 #include "Bureaucrat.hpp"
 #include <iostream>
 
-class Bureaucrat;
-
 class Form
 {
 private:
@@ -52,21 +50,13 @@ public:
 
 	const std::string&	getName() const;
 	bool 				getIsSigned() const;
-	const int			getGradeToSign() const;
-	const int			GetGradeToExec() const;
+	int			getGradeToSign() const;
+	int			getGradeToExec() const;
 	
 	void beSigned(Bureaucrat& Bureaucrat);
 };
 
 
-std::ostream& operator<<(std::ostream &out, const Form& right)
-{
-	out << "NAME: " << right.getName() << "\n"
-		<< "SIGNED: " << right.getIsSigned() << "\n"
-		<< "GRADE TO SIGN: " << right.getGradeToSign() << "\n"
-		<< "GRADE TO EXE: " << right.GetGradeToExec();
-
-	return (out);
-}
+std::ostream& operator<<(std::ostream &out, const Form& right);
 
 #endif
