@@ -11,20 +11,26 @@ void	caca(void) //throw() // este throw es una promesa que no le pasamos exepcio
 
 int main(void)
 {
-
-	Form form("form01", 200, 200);
+	Form form("form01", 1, 1); // _name, _gradeToSign, _gradeToExec
 
 	try
-	{
-		Bureaucrat pepe("pepe", 3);
+	{ //Form(std::string name, const int _gradeToSign, const int _gradeToExec);
+		Bureaucrat pepe("pepe", 150);
 		form.beSigned(pepe);
+		form.getGradeToExec();
+		form.getName();
+	}
+	catch (Form::GradeTooLowException &e)
+	{
+		std::cout << "Hemos capturado un TooLow" << "\n";
+	}
+	catch (Form::GradeTooHighException &e)
+	{
+		std::cout << "Hemos capturado un TooHigh" << "\n";
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << "\n";
+		std::cout << e.what() << " CACA \n";
 	}
-	
-	return 0;
-
-
+	return (0);
 }

@@ -26,6 +26,8 @@ public:
 	Form(Form &other);
 	~Form();
 
+
+
 	// exeption class:
 	// el primer const es referido al valor devuelto;
 	// el conts del final implica que ninguna variable del objeto es monificable!
@@ -38,6 +40,8 @@ public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
 
+
+
 	class GradeTooHighException : public std::exception // ereda de std::exeption
 	{
 		private:
@@ -46,6 +50,10 @@ public:
 		public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
+
+
+	
+
 	Form& operator=(Form &other);
 
 	const std::string&	getName() const;

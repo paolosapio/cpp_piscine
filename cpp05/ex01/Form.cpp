@@ -15,7 +15,6 @@ Form::Form(Form &other) : _name(other._name), _isSigned(other._isSigned), _grade
 {
 }
 
-
 Form& Form::operator=(Form &other)
 {
 	// _name = other._name;
