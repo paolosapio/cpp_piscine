@@ -83,38 +83,11 @@ void Bureaucrat::decrement()
 }
 
 
-/* void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(Form& Form)
 {
-	try
-	{
-		if (form.getIsSigned() == false)
-		{
-			form.beSigned(*this);
-			std::cout << this->_name << " si puede FIRMAR " << form.getName() << "\n";
-		}
-		else
-		{
-			throw Form::YaFirmadoException();
-		}
-	}
-
-	catch (Form::GradeTooLowException &e)
-	{
-		std::cout << this->_name << " no puede FIRMAR " << form.getName() << " porque " << e.what() <<" \n";
-	}
-	
-	catch (Form::YaFirmadoException &e)
-	{
-		std::cout << this->_name << " no puede FIRMAR " << form.getName() << " porque " << e.what() <<" \n";
-	}
-} */
-
-
-void Bureaucrat::signForm(Form& form)
-{
-	if (this->_grade > form.getGradeToSign())
+	if (this->_grade > Form.getGradeToSign())
 		throw Form::GradeTooLowException();
 
-	if (form.getIsSigned() == true)
+	if (Form.getIsSigned() == true)
 		throw Form::YaFirmadoException();
 }

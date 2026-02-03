@@ -2,7 +2,7 @@
 # define BUREAUCRAT_HPP
 
 /*
-NO OLVIDAR: Orthodox Canonical Form
+NO OLVIDAR: Orthodox Canonical AForm
 • Default constructor
 • Copy constructor
 • Copy assignment operator

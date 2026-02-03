@@ -1,30 +1,26 @@
 /*
-NO OLVIDAR: Orthodox Canonical Form
+NO OLVIDAR: Orthodox Canonical AForm
 • Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
 */
 
-#ifndef Form_HPP
-# define Form_HPP
+#ifndef PRESIDENTIALPARDONAForm_HPP
+# define PRESIDENTIALPARDONAForm_HPP
 
-#include "Bureaucrat.hpp"
-#include <iostream>
+#include "AForm.hpp"
 
-class Form
+class PresidentialPardonAForm : public AForm
 {
 private:
-	const std::string	_name;
-	bool				_isSigned;
-	const int			_gradeToSign; //tine que ser entre
-	const int			_gradeToExec;
+    
 
 public:
-	Form();
-	Form(std::string name, const int _gradeToSign, const int _gradeToExec);
-	Form(Form &other);
-	~Form();
+	PresidentialPardonAForm();
+	PresidentialPardonAForm(std::string name, const int _gradeToSign, const int _gradeToExec);
+	PresidentialPardonAForm(AForm &other);
+	~PresidentialPardonAForm();
 
 
 
@@ -39,6 +35,7 @@ public:
 		public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
+
 
 
 	class GradeTooHighException : public std::exception // ereda de std::exeption
@@ -60,23 +57,9 @@ public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
 
-
-
-	class caca_exetion_test : public std::exception
-	{
-		private:
-		//nada
-
-		public:
-						 //const throw() == noexcept; PEROO EN CPP98 NO PODEMOS UTIILZAR NOEXEPT
-		const char* what() const throw();
-	//	const char* what() noexcept;
-	};
-
-
 	
 
-	Form& operator=(Form &other);
+	AForm& operator=(AForm &other);
 
 	const std::string&	getName() const;
 	bool 				getIsSigned() const;
@@ -87,6 +70,6 @@ public:
 };
 
 
-std::ostream& operator<<(std::ostream &out, const Form& right);
+std::ostream& operator<<(std::ostream &out, const AForm& right);
 
 #endif

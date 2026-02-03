@@ -55,7 +55,7 @@ public:
 	void increment();
 	void decrement();
 
-	void signForm(Form& form);
+	void signForm(Form& Form);
 };
 
 #endif

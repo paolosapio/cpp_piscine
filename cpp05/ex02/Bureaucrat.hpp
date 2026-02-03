@@ -2,7 +2,7 @@
 # define BUREAUCRAT_HPP
 
 /*
-NO OLVIDAR: Orthodox Canonical Form
+NO OLVIDAR: Orthodox Canonical AForm
 • Default constructor
 • Copy constructor
 • Copy assignment operator
@@ -12,7 +12,7 @@ NO OLVIDAR: Orthodox Canonical Form
 #include <iostream>
 // #include <string>
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -55,7 +55,7 @@ public:
 	void increment();
 	void decrement();
 
-	void signForm(Form& form);
+	void signAForm(AForm& AForm);
 };
 
 #endif

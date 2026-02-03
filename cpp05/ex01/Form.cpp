@@ -60,24 +60,6 @@ int Form::getGradeToExec() const
 
 
 
-/* It changes the form’s status to signed if the bureaucrat’s grade is high enough
-(greater than or equal to the required one). Remember, grade 1 is higher than grade 2.
-If the grade is too low, throw a Form::GradeTooLowException. */
-
-/* void Form::beSigned(Bureaucrat& bureaucrat)
-{
-	if (this->_gradeToSign >= bureaucrat.getGrade() && this->_isSigned == false)
-	{
-		std::cout << "documento firmado por " << bureaucrat.getName() << "\n";
-		this->_isSigned = true;
-	}
-	else
-	{
-		throw GradeTooLowException(); //no tenemos grade suficiente para firmar
-	}
-} */
-
-
 void Form::beSigned(Bureaucrat& bureaucrat)
 {
 	try
@@ -92,6 +74,7 @@ void Form::beSigned(Bureaucrat& bureaucrat)
 	}
 
 }
+
 
 const char* Form::YaFirmadoException::what() const throw()
 {

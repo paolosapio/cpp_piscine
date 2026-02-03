@@ -1,6 +1,6 @@
-NAME = form_need
+NAME = AForm_need
 
-SRCS = Bureaucrat.cpp main.cpp Form.cpp
+SRCS = Bureaucrat.cpp main.cpp AForm.cpp
 
 CXX = c++
 
