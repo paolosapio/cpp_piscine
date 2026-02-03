@@ -64,9 +64,9 @@ int Form::getGradeToExec() const
 (greater than or equal to the required one). Remember, grade 1 is higher than grade 2.
 If the grade is too low, throw a Form::GradeTooLowException. */
 
-void Form::beSigned(Bureaucrat& bureaucrat)
+/* void Form::beSigned(Bureaucrat& bureaucrat)
 {
-	if (this->_gradeToSign >= bureaucrat.getGrade())
+	if (this->_gradeToSign >= bureaucrat.getGrade() && this->_isSigned == false)
 	{
 		std::cout << "documento firmado por " << bureaucrat.getName() << "\n";
 		this->_isSigned = true;
@@ -75,12 +75,27 @@ void Form::beSigned(Bureaucrat& bureaucrat)
 	{
 		throw GradeTooLowException(); //no tenemos grade suficiente para firmar
 	}
-}
+} */
 
+
+void Form::beSigned(Bureaucrat& bureaucrat)
+{
+	try
+	{
+		bureaucrat.signForm(*this);
+		this->_isSigned = true;
+		std::cout << bureaucrat.getName() << " ha firmado\n";
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
+
+}
 
 const char* Form::YaFirmadoException::what() const throw()
 {
-	return ("Ya esta firmado Cono!");
+	return ("Alguen intento firmar pero no pudo poruqe Ya esta firmado Cono!");
 }
 
 
@@ -94,6 +109,13 @@ const char* Form::GradeTooHighException::what() const throw()
 {
 	return ("too hi grade");
 }
+
+
+const char* Form::caca_exetion_test::what() const throw()
+{
+	return ("baya miierda dde mensaje");
+}
+
 
 
 std::ostream& operator<<(std::ostream &out, const Form& right)

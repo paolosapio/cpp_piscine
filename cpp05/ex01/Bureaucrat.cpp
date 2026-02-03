@@ -83,7 +83,7 @@ void Bureaucrat::decrement()
 }
 
 
-void Bureaucrat::signForm(Form& form)
+/* void Bureaucrat::signForm(Form& form)
 {
 	try
 	{
@@ -107,4 +107,14 @@ void Bureaucrat::signForm(Form& form)
 	{
 		std::cout << this->_name << " no puede FIRMAR " << form.getName() << " porque " << e.what() <<" \n";
 	}
+} */
+
+
+void Bureaucrat::signForm(Form& form)
+{
+	if (this->_grade > form.getGradeToSign())
+		throw Form::GradeTooLowException();
+
+	if (form.getIsSigned() == true)
+		throw Form::YaFirmadoException();
 }

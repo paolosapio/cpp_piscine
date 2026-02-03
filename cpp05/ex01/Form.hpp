@@ -41,7 +41,6 @@ public:
 	};
 
 
-
 	class GradeTooHighException : public std::exception // ereda de std::exeption
 	{
 		private:
@@ -60,6 +59,20 @@ public:
 		public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
+
+
+
+	class caca_exetion_test : public std::exception
+	{
+		private:
+		//nada
+
+		public:
+						 //const throw() == noexcept; PEROO EN CPP98 NO PODEMOS UTIILZAR NOEXEPT
+		const char* what() const throw();
+	//	const char* what() noexcept;
+	};
+
 
 	
 
