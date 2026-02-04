@@ -14,12 +14,12 @@ NO OLVIDAR: Orthodox Canonical AForm
 class PresidentialPardonForm : public AForm
 {
 private:
-	//nada
+	std::string _target;
 
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(std::string name, const int _gradeToSign, const int _gradeToExec);
-	PresidentialPardonForm(AForm &other);
+	PresidentialPardonForm(const std::string &target);
+	PresidentialPardonForm(const PresidentialPardonForm &other);
 	~PresidentialPardonForm();
 	
 	void beSigned(Bureaucrat& Bureaucrat);
