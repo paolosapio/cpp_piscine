@@ -60,22 +60,6 @@ int AForm::getGradeToExec() const
 
 
 
-void AForm::beSigned(Bureaucrat& bureaucrat)
-{
-	try
-	{
-		bureaucrat.signAForm(*this);
-		this->_isSigned = true;
-		std::cout << bureaucrat.getName() << " ha firmado\n";
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << "\n";
-	}
-
-}
-
-
 const char* AForm::YaFirmadoException::what() const throw()
 {
 	return ("Alguen intento firmar pero no pudo poruqe Ya esta firmado Cono!");

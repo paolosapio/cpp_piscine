@@ -1,75 +1,65 @@
-/*
-NO OLVIDAR: Orthodox Canonical AForm
-• Default constructor
-• Copy constructor
-• Copy assignment operator
-• Destructor
-*/
+#include "PresidentialPardonForm.hpp"
 
-#ifndef PRESIDENTIALPARDONAForm_HPP
-# define PRESIDENTIALPARDONAForm_HPP
 
-#include "AForm.hpp"
 
-class PresidentialPardonAForm : public AForm
+PresidentialPardonForm::PresidentialPardonForm() : _name(""), _isSigned(false), _gradeToSign(1), _gradeToExec(1)
 {
-private:
-    
-
-public:
-	PresidentialPardonAForm();
-	PresidentialPardonAForm(std::string name, const int _gradeToSign, const int _gradeToExec);
-	PresidentialPardonAForm(AForm &other);
-	~PresidentialPardonAForm();
+}
 
 
+PresidentialPardonForm::PresidentialPardonForm(std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
+{
+}
 
-	// exeption class:
-	// el primer const es referido al valor devuelto;
-	// el conts del final implica que ninguna variable del objeto es monificable!
-	class GradeTooLowException : public std::exception // ereda de std::exeption
+
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm &other) : _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExec(other._gradeToExec)
+{
+}
+
+PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm &other)
+{
+	// _name = other._name;
+	_isSigned = other._isSigned;
+	// _gradeToSign = other._gradeToSign;
+	// _gradeToExec = other._gradeToExec;
+	return (*this);
+}
+
+
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+	std::cout << "PresidentialPardonForm destruido\n";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+void PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat)
+{
+	try
 	{
-		private:
-		//nada
-		
-		public:
-		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
-	};
-
-
-
-	class GradeTooHighException : public std::exception // ereda de std::exeption
+		bureaucrat.signAForm(*this);
+		this->_isSigned = true;
+		std::cout << bureaucrat.getName() << " ha firmado\n";
+	}
+	catch (std::exception &e)
 	{
-		private:
-		//nada
-		
-		public:
-		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
-	};
+		std::cout << e.what() << "\n";
+	}
+
+}
 
 
-	class YaFirmadoException : public std::exception // ereda de std::exeption
-	{
-		private:
-		//nada
-		
-		public:
-		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
-	};
+void PresidentialPardonForm::beExecute(Bureaucrat& Bureaucrat)
+{
+	(void)Bureaucrat;
+}
 
-	
-
-	AForm& operator=(AForm &other);
-
-	const std::string&	getName() const;
-	bool 				getIsSigned() const;
-	int			getGradeToSign() const;
-	int			getGradeToExec() const;
-	
-	void beSigned(Bureaucrat& Bureaucrat);
-};
-
-
-std::ostream& operator<<(std::ostream &out, const AForm& right);
-
-#endif

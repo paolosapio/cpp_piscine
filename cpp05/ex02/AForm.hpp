@@ -14,7 +14,7 @@ NO OLVIDAR: Orthodox Canonical AForm
 
 class AForm //ABSTRACT (de momento es UTILITARIA mas que abstracta porque tiene cosas publicas)
 {
-private:
+protected:
 	const std::string	_name;
 	bool				_isSigned;
 	const int			_gradeToSign; //tine que ser entre
@@ -68,7 +68,7 @@ public:
 		//nada
 
 		public:
-						 //const throw() == noexcept; PEROO EN CPP98 NO PODEMOS UTIILZAR NOEXEPT
+						// const throw() == noexcept; PEROO EN CPP98 NO PODEMOS UTIILZAR NOEXEPT
 		const char* what() const throw();
 	//	const char* what() noexcept;
 	};
@@ -79,11 +79,11 @@ public:
 
 	const std::string&	getName() const;
 	bool 				getIsSigned() const;
-	int			getGradeToSign() const;
-	int			getGradeToExec() const;
+	int					getGradeToSign() const;
+	int					getGradeToExec() const;
 	
-	virtual void beSigned(Bureaucrat& Bureaucrat) = 0; // el hijo tendra quee desarollar su propria funcion bbesigned!
-	virtual void beExecute(Bureaucrat& Bureaucrat) = 0; //
+	virtual void		beSigned(Bureaucrat& Bureaucrat) = 0; // el hijo tendra quee desarollar su propria funcion bbesigned!
+	virtual void		beExecute(Bureaucrat& Bureaucrat) = 0;
 
 };
 

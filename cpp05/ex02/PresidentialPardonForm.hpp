@@ -6,27 +6,27 @@ NO OLVIDAR: Orthodox Canonical AForm
 • Destructor
 */
 
-#ifndef PRESIDENTIALPARDONAForm_HPP
-# define PRESIDENTIALPARDONAForm_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
 #include "AForm.hpp"
 
-class PresidentialPardonAForm : public AForm
+class PresidentialPardonForm : public AForm
 {
 private:
 	//nada
 
 public:
-	PresidentialPardonAForm();
-	PresidentialPardonAForm(std::string name, const int _gradeToSign, const int _gradeToExec);
-	PresidentialPardonAForm(AForm &other);
-	~PresidentialPardonAForm();
+	PresidentialPardonForm();
+	PresidentialPardonForm(std::string name, const int _gradeToSign, const int _gradeToExec);
+	PresidentialPardonForm(AForm &other);
+	~PresidentialPardonForm();
 	
-	void beSigned(Bureaucrat& Bureaucrat); //
-	void beExecute(Bureaucrat& Bureaucrat); //
+	void beSigned(Bureaucrat& Bureaucrat);
+	void beExecute(Bureaucrat& Bureaucrat);
 };
 
 
-std::ostream& operator<<(std::ostream &out, const AForm& right);
+// std::ostream& operator<<(std::ostream &out, const AForm& right);
 
 #endif

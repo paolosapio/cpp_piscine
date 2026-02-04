@@ -1,6 +1,6 @@
 NAME = AForm_need
 
-SRCS = Bureaucrat.cpp main.cpp AForm.cpp
+SRCS = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp
 
 CXX = c++
 
