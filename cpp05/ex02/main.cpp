@@ -5,24 +5,23 @@
 
 int main(void)
 {
-	Bureaucrat funcionario1("PEPE", 2);
-	PresidentialPardonForm formPresident;
-	
-
-	formPresident.beSigned(funcionario1);
-
-
-
+	std::cout << "============" << std::endl;
 	try
 	{
-		funcionario1.signAForm(formPresident);
+		Bureaucrat BurA("other", 2);
+		PresidentialPardonForm FormA("Juan");
+		std::cout << FormA << std::endl;
+		FormA.beSigned(BurA);
+		std::cout << FormA << std::endl;
+		// BurA.signAForm(FormA);
+		FormA.execute(BurA);
+		
 	}
-
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << "⭐\n";
+		std::cout << e.what() << std::endl;
 	}
-	
-	std::cout << funcionario1.getName();
+	std::cout << "============" << std::endl;
+
 	return (0);
 }

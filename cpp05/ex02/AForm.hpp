@@ -93,7 +93,7 @@ public:
 	int					getGradeToExec() const;
 	
 	void				beSigned(Bureaucrat& Bureaucrat); // mira solo si se puede firmar
-	void				beExecute(const Bureaucrat & Bureaucrat) const; // mira solo si se puede executar
+	// void				beExecute(const Bureaucrat & Bureaucrat) const; // mira solo si se puede executar
 
 
 	virtual void		execute(Bureaucrat const & executor) const = 0; // el hijo tendra quee desarollar su propria funcion execute!

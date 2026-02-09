@@ -111,17 +111,7 @@ void AForm::beSigned(Bureaucrat& bureaucrat)
 }
 
 
-void AForm::beExecute(const Bureaucrat & executor) const
-{
-	if (this->_isSigned == false)
-	{
-		throw NoFirmadoException();
-	}
 
-	if (executor.getGrade() > this->getGradeToExec())
-		throw GradeTooLowException();
-
-}
 
 const char* AForm::caca_exetion_test::what() const throw()
 {

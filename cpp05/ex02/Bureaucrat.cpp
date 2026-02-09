@@ -92,3 +92,19 @@ void Bureaucrat::signAForm(AForm& AForm)
 	if (AForm.getIsSigned() == true)
 		throw AForm::YaFirmadoException();
 }
+
+
+
+
+
+void Bureaucrat::executeForm(const AForm & formulario) const
+{
+	if (formulario.getIsSigned() == false)
+	{
+		throw AForm::NoFirmadoException();
+	}
+
+	if (this->_grade > formulario.getGradeToExec())
+		throw GradeTooLowException();
+
+}

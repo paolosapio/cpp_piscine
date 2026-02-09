@@ -56,6 +56,8 @@ public:
 	void decrement();
 
 	void signAForm(AForm& AForm);
+	void executeForm(const AForm & formulario) const;
+
 };
 
 #endif

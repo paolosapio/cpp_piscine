@@ -10,7 +10,7 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("form padre", 25, 5), _
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
-	  std::cout << "[PresidentialPardonForm] Constructor called." << std::endl;
+	  std::cout << "[PresidentialPardonForm] Constructor called.\n";
 }
 
 
@@ -51,8 +51,9 @@ las dos opciones es más elegante.
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 { // tiene que estar ya fimado y tener el buractara suficiente valor para ejecutar
 
-	this->beExecute(executor);
+	// this->beExecute(executor);
 	//this->beExecute(executor);
 	// <bureaucrat> executed <form>
 	std::cout << executor.getName() << " executa " << this->_name;
+	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox.\n";
 }
