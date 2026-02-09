@@ -61,6 +61,16 @@ public:
 	};
 
 
+	class NoFirmadoException : public std::exception // ereda de std::exeption
+	{
+		private:
+		//nada
+		
+		public:
+		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
+	};
+
+
 
 	class caca_exetion_test : public std::exception
 	{
@@ -82,9 +92,11 @@ public:
 	int					getGradeToSign() const;
 	int					getGradeToExec() const;
 	
-	virtual void		beSigned(Bureaucrat& Bureaucrat) = 0; // el hijo tendra quee desarollar su propria funcion bbesigned!
-	virtual void		beExecute(Bureaucrat& Bureaucrat) = 0;
+	void				beSigned(Bureaucrat& Bureaucrat); // mira solo si se puede firmar
+	void				beExecute(const Bureaucrat & Bureaucrat) const; // mira solo si se puede executar
 
+
+	virtual void		execute(Bureaucrat const & executor) const = 0; // el hijo tendra quee desarollar su propria funcion execute!
 };
 
 

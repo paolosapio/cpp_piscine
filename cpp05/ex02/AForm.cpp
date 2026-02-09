@@ -66,6 +66,12 @@ const char* AForm::YaFirmadoException::what() const throw()
 }
 
 
+const char* AForm::NoFirmadoException::what() const throw()
+{
+	return ("OJO! el formulario esta sin FIRMA y eso  es malo");
+}
+
+
 const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("too low grade");
@@ -78,19 +84,48 @@ const char* AForm::GradeTooHighException::what() const throw()
 }
 
 
-const char* AForm::caca_exetion_test::what() const throw()
-{
-	return ("baya miierda dde mensaje");
-}
-
-
-
 std::ostream& operator<<(std::ostream &out, const AForm& right)
 {
 	out << "NAME: " << right.getName() << "\n"
 		<< "SIGNED: " << right.getIsSigned() << "\n"
 		<< "GRADE TO SIGN: " << right.getGradeToSign() << "\n"
-		<< "GRADE TO EXE: " << right.getGradeToExec();
+		<< "GRADE TO EXE: " << right.getGradeToExec() << "\n";
 
 	return (out);
 }
+
+
+void AForm::beSigned(Bureaucrat& bureaucrat)
+{
+	try
+	{
+		bureaucrat.signAForm(*this);
+		this->_isSigned = true;
+		std::cout << bureaucrat.getName() << " ha firmado\n";
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
+
+}
+
+
+void AForm::beExecute(const Bureaucrat & executor) const
+{
+	if (this->_isSigned == false)
+	{
+		throw NoFirmadoException();
+	}
+
+	if (executor.getGrade() > this->getGradeToExec())
+		throw GradeTooLowException();
+
+}
+
+const char* AForm::caca_exetion_test::what() const throw()
+{
+	return ("hola ayooo");
+}
+
+

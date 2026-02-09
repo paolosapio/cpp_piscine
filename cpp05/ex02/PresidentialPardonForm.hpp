@@ -21,12 +21,8 @@ public:
 	PresidentialPardonForm(const std::string &target);
 	PresidentialPardonForm(const PresidentialPardonForm &other);
 	~PresidentialPardonForm();
-	
-	void beSigned(Bureaucrat& Bureaucrat);
-	void beExecute(Bureaucrat& Bureaucrat);
+	PresidentialPardonForm& operator=(PresidentialPardonForm &other);
+	void		execute(Bureaucrat const & executor)  const; // esta es la funcion que debe implemmentar el hijo
+
 };
-
-
-// std::ostream& operator<<(std::ostream &out, const AForm& right);
-
 #endif

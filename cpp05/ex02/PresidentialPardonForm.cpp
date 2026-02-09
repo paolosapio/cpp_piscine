@@ -3,7 +3,7 @@
 
 
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("form name padre", 25, 5), _target("")
+PresidentialPardonForm::PresidentialPardonForm() : AForm("form padre", 25, 5), _target("")
 {
 }
 
@@ -15,16 +15,16 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AFor
 
 
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other._name, 25, 5), _target(other._target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : _target(other._target)
 {
 }
 
+
+
 PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm &other)
 {
-	// _name = other._name;
-	_isSigned = other._isSigned;
-	// _gradeToSign = other._gradeToSign;
-	// _gradeToExec = other._gradeToExec;
+	if (this != &other)
+	_target = other._target;
 	return (*this);
 }
 
@@ -35,34 +35,24 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 
+/* Debes comprobar:
+- que el formulario está firmado, y
+- que el grado del burócrata que intenta ejecutarlo es suficientemente alto.
+- Si no se cumplen estas condiciones, lanza la excepción apropiada.
+
+Puedes decidir si las comprobaciones se hacen en cada clase concreta o en la clase
+base (y luego llamar a otra función que realice la acción). Sin embargo, una de
+las dos opciones es más elegante.
+*/
 
 
 
 
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
+{ // tiene que estar ya fimado y tener el buractara suficiente valor para ejecutar
 
-
-
-
-
-
-void PresidentialPardonForm::beSigned(Bureaucrat& bureaucrat)
-{
-	try
-	{
-		bureaucrat.signAForm(*this);
-		this->_isSigned = true;
-		std::cout << bureaucrat.getName() << " ha firmado\n";
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << "\n";
-	}
-
+	this->beExecute(executor);
+	//this->beExecute(executor);
+	// <bureaucrat> executed <form>
+	std::cout << executor.getName() << " executa " << this->_name;
 }
-
-
-void PresidentialPardonForm::beExecute(Bureaucrat& Bureaucrat)
-{
-	(void)Bureaucrat;
-}
-

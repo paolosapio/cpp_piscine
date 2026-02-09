@@ -50,7 +50,7 @@ public:
 	};
 
 	const std::string& getName() const;
-	int& getGrade();
+	const int& getGrade() const;
 
 	void increment();
 	void decrement();
