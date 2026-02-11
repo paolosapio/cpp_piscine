@@ -25,8 +25,8 @@ public:
 	Bureaucrat(std::string name, int grade);
 	Bureaucrat(Bureaucrat &other);
 	Bureaucrat& operator=(Bureaucrat &other);
-
 	~Bureaucrat();
+
 	// exeption class:
 	// el primer const es referido al valor devuelto;
 	// el conts del final implica que ninguna variable del objeto es monificable!
@@ -48,6 +48,7 @@ public:
 		public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
+
 
 	const std::string& getName() const;
 	const int& getGrade() const;
