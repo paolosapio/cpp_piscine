@@ -1,121 +1,124 @@
 #include "AForm.hpp"
+#include "Bureaucrat.hpp"
 
+/* ============================================================
+   CONSTRUCTORES Y DESTRUCTOR
+   ============================================================ */
 
-AForm::AForm() : _name(""), _isSigned(false), _gradeToSign(1), _gradeToExec(1)
+AForm::AForm() : _name("DefaultForm"), _isSigned(false), _gradeToSign(150), _gradeToExec(150)
 {
 }
 
-
-AForm::AForm(std::string name, const int gradeToSign, const int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
+AForm::AForm(const std::string &name, int gradeToSign, int gradeToExec) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExec(gradeToExec)
 {
+	if (gradeToSign < 1 || gradeToExec < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExec > 150)
+		throw GradeTooLowException();
 }
 
-
-AForm::AForm(AForm &other) : _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExec(other._gradeToExec)
+AForm::AForm(const AForm &other) : _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExec(other._gradeToExec)
 {
 }
-
-AForm& AForm::operator=(AForm &other)
-{
-	// _name = other._name;
-	_isSigned = other._isSigned;
-	// _gradeToSign = other._gradeToSign;
-	// _gradeToExec = other._gradeToExec;
-	return (*this);
-}
-
 
 AForm::~AForm()
 {
-	std::cout << "AForm destruido\n";
+	std::cout << "Formulario " << this->_name << " destruido";
 }
 
+/* ============================================================
+   OPERADOR DE ASIGNACIÓN
+   ============================================================ */
 
-
-
-/* GETTERS */
-
-const std::string& AForm::getName() const
+AForm &AForm::operator=(const AForm &other)
 {
-	return (this->_name);
+	if (this != &other)
+	{
+		this->_isSigned = other._isSigned;
+		// Los atributos const NO se pueden reasignar
+	}
+	return *this;
 }
 
+/* ============================================================
+   GETTERS
+   ============================================================ */
+
+const std::string &AForm::getName() const
+{
+	return this->_name;
+}
 
 bool AForm::getIsSigned() const
 {
-	return (this->_isSigned);
+	return this->_isSigned;
 }
-
 
 int AForm::getGradeToSign() const
 {
-	return (this->_gradeToSign);
+	return this->_gradeToSign;
 }
-
 
 int AForm::getGradeToExec() const
 {
-	return (this->_gradeToExec);
+	return this->_gradeToExec;
 }
 
+/* ============================================================
+   MÉTODOS principales
+   ============================================================ */
 
-
-const char* AForm::YaFirmadoException::what() const throw()
+void AForm::beSigned(Bureaucrat const &bureaucrat)
 {
-	return ("Alguen intento firmar pero no pudo poruqe Ya esta firmado Cono!");
+	if (this->_isSigned)
+		throw AlreadySignedException();
+
+	if (bureaucrat.getGrade() > this->_gradeToSign)
+		throw GradeTooLowException();
+
+	this->_isSigned = true;
 }
 
-
-const char* AForm::NoFirmadoException::what() const throw()
+//! execute NO SE DESAROLLA EN AFORM poruqe es VIRTUAL
+/* virtual execute(Bureaucrat const &executor)
 {
-	return ("OJO! el formulario esta sin FIRMA y eso  es malo");
-}
+} */
 
-
-const char* AForm::GradeTooLowException::what() const throw()
+void			AForm::checkExecutable(Bureaucrat const &executor) const
 {
-	return ("too low grade");
+	if (this->_isSigned == false)
+		throw NotSignedException();
+	if (executor.getGrade() > this->_gradeToExec)
+		throw GradeTooLowException();
 }
 
+/* ============================================================
+   EXCEPCIONES
+   ============================================================ */
+//! const char* (al inicio)_Devuelve un puntero a texto constante
+//! throw()_________________La función no lanzará excepciones
+//! const (al final)________La función no modifica el objeto
 
-const char* AForm::GradeTooHighException::what() const throw()
+const char *AForm::GradeTooHighException::what() const throw()
 {
-	return ("too hi grade");
+	return "Grade is too high";
 }
 
-
-std::ostream& operator<<(std::ostream &out, const AForm& right)
+const char *AForm::GradeTooLowException::what() const throw()
 {
-	out << "NAME: " << right.getName() << "\n"
-		<< "SIGNED: " << right.getIsSigned() << "\n"
-		<< "GRADE TO SIGN: " << right.getGradeToSign() << "\n"
-		<< "GRADE TO EXE: " << right.getGradeToExec() << "\n";
-
-	return (out);
+	return "Grade is too low";
 }
 
-
-void AForm::beSigned(Bureaucrat& bureaucrat)
+const char *AForm::AlreadySignedException::what() const throw()
 {
-	try
-	{
-		bureaucrat.signAForm(*this);
-		this->_isSigned = true;
-		std::cout << bureaucrat.getName() << " ha firmado\n";
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << "\n";
-	}
-
+	return "Form is already signed";
 }
 
-
-
-
-const char* AForm::caca_exetion_test::what() const throw()
+const char *AForm::NotSignedException::what() const throw()
 {
-	return ("hola ayooo");
+	return "Form is not signed";
 }
 
-
+/* ============================================================
+   OPERRADOR <<
+   ============================================================ */

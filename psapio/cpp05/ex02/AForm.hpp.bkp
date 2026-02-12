@@ -1,3 +1,11 @@
+/*
+NO OLVIDAR: Orthodox Canonical AForm
+• Default constructor
+• Copy constructor
+• Copy assignment operator
+• Destructor
+*/
+
 #ifndef AForm_HPP
 # define AForm_HPP
 
@@ -6,25 +14,23 @@
 
 class AForm //ABSTRACT (de momento es UTILITARIA mas que abstracta porque tiene cosas publicas)
 {
-	private:
+protected:
 	const std::string	_name;
 	bool				_isSigned;
-	const int			_gradeToSign;
+	const int			_gradeToSign; //tine que ser entre
 	const int			_gradeToExec;
-	
-	public:
+
+public:
 	AForm();
 	AForm(std::string name, const int _gradeToSign, const int _gradeToExec);
 	AForm(AForm &other);
-	virtual ~AForm();
-	AForm& operator=(AForm &other);
-	
-//getterso
+	~AForm();
+
+
 
 	// exeption class:
 	// el primer const es referido al valor devuelto;
 	// el conts del final implica que ninguna variable del objeto es monificable!
-
 	class GradeTooLowException : public std::exception // ereda de std::exeption
 	{
 		private:
@@ -79,6 +85,7 @@ class AForm //ABSTRACT (de momento es UTILITARIA mas que abstracta porque tiene 
 
 
 
+	AForm& operator=(AForm &other);
 
 	const std::string&	getName() const;
 	bool 				getIsSigned() const;
