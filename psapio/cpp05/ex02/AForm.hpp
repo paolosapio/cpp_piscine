@@ -11,31 +11,31 @@ class AForm
 {
 private:
 	const std::string	_name;
-	bool				_isSigned;
 	const int			_gradeToSign;
 	const int			_gradeToExec;
+	bool				_isSigned;
 
 public:
-	// Orthodox Canonical Form
+// Orthodox Canonical Form
 	AForm(); //! OK
 	AForm(const std::string &name, int gradeToSign, int gradeToExec); //! OK
 	AForm(const AForm &other); //! OK
 	virtual ~AForm(); //! OK
 	AForm &operator=(const AForm &other);// Operador de asignacion
 
-	// Getters
+// Getters
 	const std::string	&getName() const; //! OK
 	bool				getIsSigned() const; //! OK
 	int					getGradeToSign() const; //! OK
 	int					getGradeToExec() const; //! OK
 
-	// Métodos principales
+// Métodos principales
 	void			beSigned(Bureaucrat const &bureaucrat);
 	virtual void	execute(Bureaucrat const &executor) const = 0;
-	// Metodo opcional pero elegante y esencial para no repetir codigo
+// Metodo opcional pero elegante y esencial para no repetir codigo
 	void			checkExecutable(Bureaucrat const &executor) const;
 
-	// Excepciones
+// Excepciones
 	//! const char* (al inicio)_Devuelve un puntero a texto constante
 	//! throw()_________________La función no lanzará excepciones
 	//! const (al final)________La función no modifica el objeto

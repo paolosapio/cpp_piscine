@@ -1,59 +1,49 @@
 #include "PresidentialPardonForm.hpp"
 #include "AForm.hpp"
 
-
-
-PresidentialPardonForm::PresidentialPardonForm() : AForm("form padre", 25, 5), _target("")
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential_Pardon_Form", 25, 5), _target("default")
 {
 }
-
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
-	  std::cout << "[PresidentialPardonForm] Constructor called.\n";
+	std::cout << "Presidential_Pardon_Form\n";
 }
 
-
-
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : _target(other._target)
+//constructor desde other: inizializa el padre con los valores de other para eredar con valore sde other
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other), _target(other._target)
 {
 }
-
-
-
-PresidentialPardonForm& PresidentialPardonForm::operator=(PresidentialPardonForm &other)
-{
-	if (this != &other)
-	_target = other._target;
-	return (*this);
-}
-
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "PresidentialPardonForm destruido\n";
 }
 
+/* ============================================================
+   OPERADOR DE ASIGNACIÓN
+   ============================================================ */
 
-/* Debes comprobar:
-- que el formulario está firmado, y
-- que el grado del burócrata que intenta ejecutarlo es suficientemente alto.
-- Si no se cumplen estas condiciones, lanza la excepción apropiada.
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
+{
+	if (this != &other)
+	{
+		AForm::operator=(other); // es necesario? que hace? inicialida el operador del padre con el varo  de lo que entra desde other?
+		_target = other._target;
+	}
+	return (*this);
+}
 
-Puedes decidir si las comprobaciones se hacen en cada clase concreta o en la clase
-base (y luego llamar a otra función que realice la acción). Sin embargo, una de
-las dos opciones es más elegante.
-*/
+/* ============================================================
+   MÉTODO execute
+   ============================================================ */
 
+void PresidentialPardonForm::execute(const Bureaucrat &executor) const
+{
+    // Comprueba si está firmado y si el executor tiene rango suficiente
+    this->checkExecutable(executor);
 
-
-
-void PresidentialPardonForm::execute(Bureaucrat const &executor) const
-{ // tiene que estar ya fimado y tener el buractara suficiente valor para ejecutar
-
-	// this->beExecute(executor);
-	//this->beExecute(executor);
-	// <bureaucrat> executed <form>
-	std::cout << executor.getName() << " executa " << this->_name;
-	std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox.\n";
+    // Acción específica del formulario
+    std::cout << this->_target
+              << " has been pardoned by Zaphod Beeblebrox"
+              << std::endl;
 }

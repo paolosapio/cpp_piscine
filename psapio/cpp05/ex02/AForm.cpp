@@ -23,7 +23,6 @@ AForm::AForm(const AForm &other) : _name(other._name), _isSigned(other._isSigned
 
 AForm::~AForm()
 {
-	std::cout << "Formulario " << this->_name << " destruido";
 }
 
 /* ============================================================
@@ -122,3 +121,11 @@ const char *AForm::NotSignedException::what() const throw()
 /* ============================================================
    OPERRADOR <<
    ============================================================ */
+   std::ostream &operator<<(std::ostream &out, const AForm &right)
+{
+    out << "Form: " << right.getName()
+        << " | Signed: " << (right.getIsSigned() ? "yes" : "no")
+        << " | Grade to sign: " << right.getGradeToSign()
+        << " | Grade to execute: " << right.getGradeToExec();
+    return out;
+}
