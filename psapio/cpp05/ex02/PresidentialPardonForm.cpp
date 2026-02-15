@@ -1,16 +1,19 @@
 #include "PresidentialPardonForm.hpp"
-#include "AForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential_Pardon_Form", 25, 5), _target("default")
+/* ============================================================
+	CONSTRUCTORES Y DESTRUCTOR
+	============================================================ */
+
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5), _target("default")
 {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string &target) : AForm("PresidentialPardonForm", 25, 5), _target(target)
 {
-	std::cout << "Presidential_Pardon_Form\n";
+	// std::cout << "PresidentialPardonForm\n";
 }
 
-//constructor desde other: inizializa el padre con los valores de other para eredar con valore sde other
+// Constructor de copia: inicializa la parte base (AForm) y copia el target
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other), _target(other._target)
 {
 }
@@ -20,30 +23,30 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 /* ============================================================
-   OPERADOR DE ASIGNACIÓN
-   ============================================================ */
+	OPERADOR DE ASIGNACIÓN
+	============================================================ */
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {
 	if (this != &other)
 	{
-		AForm::operator=(other); // es necesario? que hace? inicialida el operador del padre con el varo  de lo que entra desde other?
-		_target = other._target;
+		AForm::operator=(other); // copia la parte base (AForm), ya que el hijo no puede acceder a sus atributos
+		_target = other._target; // copia la parte específica del hijo
 	}
 	return (*this);
 }
 
 /* ============================================================
-   MÉTODO execute
-   ============================================================ */
+	MÉTODO execute
+	============================================================ */
 
 void PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-    // Comprueba si está firmado y si el executor tiene rango suficiente
-    this->checkExecutable(executor);
+	// Comprueba si está firmado y si el executor tiene rango suficiente
+	this->checkExecutable(executor);
 
-    // Acción específica del formulario
-    std::cout << this->_target
-              << " has been pardoned by Zaphod Beeblebrox"
-              << std::endl;
+	// Acción de execucion específica del formulario
+	std::cout << this->_target
+					<< " has been pardoned by Zaphod Beeblebrox"
+					<< std::endl;
 }

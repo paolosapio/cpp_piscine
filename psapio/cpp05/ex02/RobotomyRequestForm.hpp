@@ -1,20 +1,23 @@
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
-#include "AForm.hpp"
-#include <string>
+# include <string> // incluido aquí para evitar dependencias ocultas, aunque AForm también lo incluya
+# include "AForm.hpp"
 
-class ShrubberyCreationForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 private:
     std::string _target;
 
 public:
-    ShrubberyCreationForm(const std::string &target);
-    ShrubberyCreationForm(const ShrubberyCreationForm &other);
-    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
-    ~ShrubberyCreationForm();
+    RobotomyRequestForm();
+    RobotomyRequestForm(const std::string &target);
+    RobotomyRequestForm(const RobotomyRequestForm &other);
+    ~RobotomyRequestForm();
 
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
+
+    // esta es la funcion que debe implementar el hijo
     void execute(const Bureaucrat &executor) const;
 };
 

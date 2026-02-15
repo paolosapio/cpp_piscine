@@ -28,12 +28,6 @@ void PhoneBook::add_contact()
 		page = 0;
 }
 
-
-
-
-
-
-
 void ten_chars_print(std::string content)
 {
 	int i = 0;
@@ -53,12 +47,6 @@ void ten_chars_print(std::string content)
 	}
 }
 
-
-
-
-
-
-
 void PhoneBook::print_row(int page)
 {
 	// if (!_first_name.empty())
@@ -74,12 +62,6 @@ void PhoneBook::print_row(int page)
 	}
 }
 
-
-
-
-
-
-
 void PhoneBook::print_table()
 {
 	int i = 0;
@@ -90,16 +72,6 @@ void PhoneBook::print_table()
 		i++;
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 void PhoneBook::ask_contact_detail()
 {
@@ -127,16 +99,6 @@ void PhoneBook::ask_contact_detail()
 		contacts[number_value].print();
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 void PhoneBook::search_contact()
 {

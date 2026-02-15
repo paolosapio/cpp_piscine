@@ -1,8 +1,8 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
-#define PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 
-#include "AForm.hpp"
-#include <string>
+# include <string> // incluido aquí para evitar dependencias ocultas, aunque AForm también lo incluya
+# include "AForm.hpp"
 
 class PresidentialPardonForm : public AForm
 {
