@@ -7,18 +7,18 @@
 class PresidentialPardonForm : public AForm
 {
 private:
-    std::string _target;
+	std::string _target;
 
 public:
 	PresidentialPardonForm();
-    PresidentialPardonForm(const std::string &target);
-    PresidentialPardonForm(const PresidentialPardonForm &other);
-    ~PresidentialPardonForm();
-    
-    PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
-    
-    // esta es la funcion que debe implemmentar el hijo
-    void execute(const Bureaucrat &executor) const;
+	PresidentialPardonForm(const std::string &target);
+	PresidentialPardonForm(const PresidentialPardonForm &other);
+	~PresidentialPardonForm();
+	
+	PresidentialPardonForm &operator=(const PresidentialPardonForm &other);
+	
+	// esta es la funcion que debe implemmentar el hijo
+	void execute(const Bureaucrat &executor) const;
 };
 
 #endif
