@@ -1,27 +1,37 @@
-#include "Bureaucrat.hpp"
-#include "PresidentialPardonForm.hpp"
-#include "AForm.hpp"
 #include <iostream>
 
-int main(void)
-{
-	std::cout << "============" << std::endl;
-	try
-	{
-		Bureaucrat BurA("other", 2);
-		PresidentialPardonForm FormA("Juan");
-		std::cout << FormA << std::endl;
-		FormA.beSigned(BurA);
-		std::cout << FormA << std::endl;
-		// BurA.signAForm(FormA);
-		FormA.execute(BurA);
-		
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	std::cout << "============" << std::endl;
+#include "Bureaucrat.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
-	return (0);
-}
+/* 	Crea un Bureaucrat con rango suficiente
+    Crea los tres formularios
+    Los firma
+    Los ejecuta
+    Muestra los mensajes correctos
+    Prueba las excepciones si quieres verlas */
+
+int main()
+{
+    try
+    {
+        Bureaucrat boss("Paolo", 1);
+        std::cout << "\n--- Creando formularios ---\n";
+        ShrubberyCreationForm shrub("home");
+        RobotomyRequestForm robo("Bender");
+        PresidentialPardonForm pardon("Marvin");
+        std::cout << "\n--- Firmando formularios ---\n";
+        boss.signForm(shrub);
+        boss.signForm(robo);
+        boss.signForm(pardon);
+        std::cout << "\n--- Ejecutando formularios ---\n";
+        boss.executeForm(shrub); boss.executeForm(robo); 
+        boss.executeForm(pardon);
+    }
+    catch (std::exception &e)
+    {
+        std::cerr << "Exception: " << e.what() << std::endl;
+    }
+    return 0;
+} 

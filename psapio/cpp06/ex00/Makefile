@@ -1,6 +1,6 @@
-NAME = AForm_need
+NAME = ScalarConverter
 
-SRCS = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+SRCS = ScalarConverter.cpp main.cpp
 
 CXX = c++
 
