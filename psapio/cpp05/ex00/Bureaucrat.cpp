@@ -4,6 +4,7 @@ Bureaucrat::Bureaucrat() : _name("mr.X"), _grade(150)
 {
 }
 
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
 	if (grade > 150)
@@ -13,10 +14,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 	std::cout << "Se ha creado " << this->_name << " con grado: " << _grade << "\n";
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat &other) : _name(other._name)
+
+Bureaucrat::Bureaucrat(Bureaucrat &other) : _name(other._name), _grade(other._grade)
 {
-	*this = other;
 }
+
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat &other)
 {
@@ -24,6 +26,7 @@ Bureaucrat& Bureaucrat::operator=(Bureaucrat &other)
 		_grade = other._grade;
 	return (*this);
 }
+
 
 std::ostream& operator<<(std::ostream& out, Bureaucrat& other)
 {
@@ -56,10 +59,11 @@ const std::string& Bureaucrat::getName() const
 }
 
 
-int& Bureaucrat::getGrade()
+const int& Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }
+
 
 void Bureaucrat::increment()
 {
@@ -67,6 +71,7 @@ void Bureaucrat::increment()
 		throw GradeTooHighException();
 	this->_grade--;
 }
+
 
 void Bureaucrat::decrement()
 {

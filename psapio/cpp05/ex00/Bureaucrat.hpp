@@ -1,14 +1,6 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-/*
-NO OLVIDAR: Orthodox Canonical AForm
-• Default constructor
-• Copy constructor
-• Copy assignment operator
-• Destructor
-*/
-
 #include <iostream>
 // #include <string>
 
@@ -48,11 +40,11 @@ public:
 		const char* what() const throw(); //throw es una promesa que esta funcion no va a lanzar una expecion
 	};
 
-	const std::string& getName() const;
-	int& getGrade();
+	const std::string &getName() const;
+	const int &getGrade() const;
 
 	void increment();
 	void decrement();
 };
-
+	std::ostream& operator<<(std::ostream& out, Bureaucrat& other);
 #endif

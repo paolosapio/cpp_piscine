@@ -4,6 +4,7 @@
 #ifndef SCALARCONVERTER_H
 # define SCALARCONVERTER_H
 
+#include <sstream>
 #include <iostream>
 #include <string>
 

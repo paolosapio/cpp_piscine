@@ -24,7 +24,7 @@ public:
 	Bureaucrat();
 	Bureaucrat(std::string name, int grade);
 	Bureaucrat(Bureaucrat &other);
-	Bureaucrat& operator=(Bureaucrat &other);
+	Bureaucrat &operator=(Bureaucrat &other);
 
 	~Bureaucrat();
 	// exeption class:
@@ -50,7 +50,7 @@ public:
 	};
 
 	const std::string& getName() const;
-	int& getGrade();
+	const int &getGrade() const;
 
 	void increment();
 	void decrement();

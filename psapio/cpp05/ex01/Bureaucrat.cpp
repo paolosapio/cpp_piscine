@@ -16,9 +16,8 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 }
 
 
-Bureaucrat::Bureaucrat(Bureaucrat &other) : _name(other._name)
+Bureaucrat::Bureaucrat(Bureaucrat &other) : _name(other._name), _grade(other._grade)
 {
-	*this = other;
 }
 
 
@@ -61,7 +60,7 @@ const std::string& Bureaucrat::getName() const
 }
 
 
-int& Bureaucrat::getGrade()
+const int& Bureaucrat::getGrade() const
 {
 	return (this->_grade);
 }

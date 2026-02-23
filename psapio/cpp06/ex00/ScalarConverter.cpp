@@ -21,7 +21,6 @@ ScalarConverter::~ScalarConverter()
 
 
 /*
-
 static bool isChar(const std::string &s);
 static bool isInt(const std::string &s);
 static bool isFloat(const std::string &s);

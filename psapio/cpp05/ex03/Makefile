@@ -1,4 +1,4 @@
-NAME = AForm_need
+NAME = coffee-making
 
 SRCS = Bureaucrat.cpp main.cpp Intern.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
