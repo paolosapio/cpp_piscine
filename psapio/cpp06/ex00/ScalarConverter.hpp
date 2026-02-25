@@ -17,7 +17,7 @@ private:
 	~ScalarConverter();
 
 public:
-	static void convert(const std::string &stingVal);
+	static void convert(const std::string &stingVal); //staticaa es que se puede aceder a ella sin necesidad de instanciar el objeto
 };
 
 enum State
@@ -26,12 +26,11 @@ enum State
 	S____SIGN, // 1
 	S_____INT, // 2
 	S_____DOT, // 3
-	S____FRAC, // 4
+	S__DOUBLE, // 4
 	S_FLOAT_F, // 5
 	S___ERROR, // 6
 	S___COUNT  // 7
 };
-
 
 enum Token
 {
