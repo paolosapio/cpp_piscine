@@ -9,7 +9,7 @@
 /* 	std::stringstream stringConversor;
 
 	int aInt;
-	std::string stringo = "7";
+	std::string stringo = "7 89 7";
 
 	stringConversor << stringo;
 	stringConversor >> aInt;
