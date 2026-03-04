@@ -98,8 +98,6 @@ bool CheckPseudoChar(const std::string &stringVal)
 		return (true);
 	}
 
-
-
 	if (stringVal.length() == 4 && stringVal.compare("-inf") == 0)
 	{
 		desarolloNegInff();
@@ -114,6 +112,8 @@ bool CheckPseudoChar(const std::string &stringVal)
 
 	else if (stringVal.length() == 3 && stringVal.compare("nan") == 0)
 	{
+
+		std::cout << "caca\n";
 		desarolloNanf();
 		return (true);
 	}
