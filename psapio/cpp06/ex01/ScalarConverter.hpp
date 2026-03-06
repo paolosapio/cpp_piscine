@@ -1,45 +1,20 @@
-// input    "string"
-// output   char int float double pseudo-literals
-
-#ifndef SCALARCONVERTER_H
-# define SCALARCONVERTER_H
+#ifndef SERIALIZER_H
+# define SERIALIZER_H
 
 #include <sstream>
 #include <iostream>
 #include <string>
 
-class ScalarConverter
+class Serializer
 {
 private:
-	ScalarConverter();
-	ScalarConverter(const ScalarConverter &other);
-	ScalarConverter &operator=(const ScalarConverter &other);
-	~ScalarConverter();
+	Serializer();
+	Serializer(const Serializer &other);
+	Serializer &operator=(const Serializer &other);
+	~Serializer();
 
 public:
-	static void convert(const std::string &stingVal); //staticaa es que se puede aceder a ella sin necesidad de instanciar el objeto
-};
-
-enum State
-{
-	S___START, // 0
-	S____SIGN, // 1
-	S_____INT, // 2
-	S_____DOT, // 3
-	S__DOUBLE, // 4
-	S_FLOAT_F, // 5
-	S___ERROR, // 6
-	S___COUNT  // 7
-};
-
-enum Token
-{
-	T__SIGN,
-	T_DIGIT,
-	T___DOT,
-	T_____F,
-	T_OTHER,
-	T_COUNT
+	static uintptr_t serialize(Data* ptr); // acuerdate qeu static es que puedes llamar el metodo aunque no este instanciado el objeto
 };
 
 #endif
