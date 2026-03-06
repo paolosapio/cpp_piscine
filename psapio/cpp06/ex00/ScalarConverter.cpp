@@ -63,26 +63,41 @@ int tokenizer2(char c) //TOKEN
 	return (T_OTHER);
 }
 
+
+
+/********************************************************************** */
+/********************************************************************** */
+/********************* DESAROLLO FUNCIONES NUMEROS ******************** */
+/********************************************************************** */
+/********************************************************************** */
+
 void desaroChar(char c)
 {
+	std::cout << "DESDE CHAR:\n";
+
 	std::cout << "char  : '" << c << "'\n";
 	std::cout << "int   : " << static_cast<int>(c) << "\n"; // static cast
 	std::cout << "float : " << static_cast<float>(c) << ".0f\n"; // static cast
 	std::cout << "double: " << static_cast<double>(c) << ".0\n"; // static cast
 }
 
-
+// NO TERMINADA
 void desarolloInt(const std::string &number)
 {
+	std::cout << "DESDE INT:\n";
 	//Ya he validado que es un int:  lógica previa,
 	// aquí podemos asumir que strtol funciona bien.
 
-	long tmp = std::strtol(number.c_str(), NULL, 10);
+	char *end_str = NULL;
+	long tmp = std::strtol(number.c_str(), &end_str, 10);
 // convierte el strng pero comproba varias cosas con el puntero mandato tambien 
 // el ultimo valor es la base en este caso decimal
 // Por seguridad, comprobamos rango de int
+
 	if (tmp < std::numeric_limits<int>::min() || tmp > std::numeric_limits<int>::max())
 	{
+		std::cout << "INT ALERT: OVERFLOW O UNDERFLOW \n";
+
 		std::cout << "char  : impossible\n";
 		std::cout << "int   : impossible\n";
 		std::cout << "float : impossible\n";
@@ -90,7 +105,7 @@ void desarolloInt(const std::string &number)
 		return;
 	}
 
-	int n = static_cast<int>(tmp);
+	int n = std::atoi(number.c_str());
 
 	// === CHAR ===
 	std::cout << "char  : ";
@@ -120,14 +135,20 @@ void desarolloInt(const std::string &number)
 }
 
 
+
+
+
+
+
 int lenFromPoint(const std::string &number)
 {
 	int i;
 	int j;
-
-	for (i = 0; number[i] != '.'; ++i)
+	
+	for (i = 0; number[i] != '\0' && number[i] != '.'; ++i)
 	{}
-
+	if (number[i] == '\0')
+		return (1);
 	for (j = 0; number[j + i] != '\0' && number[j + i] != 'f' && number[j + i] != 'F'; ++j)
 	{}
 
@@ -138,13 +159,15 @@ int lenFromPoint(const std::string &number)
 // https://www.h-schmidt.net/FloatConverter/IEEE754.html
 void desarolloFloat(const std::string &number)
 {
+	std::cout << "DESDE FLOAT:\n";
+
 	float n = std::strtof(number.c_str(), NULL);
 
 	// === CHAR ===
 	std::cout << "char  : ";
 	if (std::isnan(n) ||
-		n < std::numeric_limits<char>::min() ||
-		n > std::numeric_limits<char>::max())
+		static_cast<int>(n) < std::numeric_limits<char>::min() ||
+		static_cast<int>(n) > std::numeric_limits<char>::max() )
 	{
 		std::cout << "impossible\n";
 	}
@@ -172,6 +195,7 @@ void desarolloFloat(const std::string &number)
 
 	// === FLOAT ===
 	std::cout << "float : ";
+	
 	if (std::isnan(n))
 	{
 		std::cout << "nanf\n";
@@ -180,13 +204,9 @@ void desarolloFloat(const std::string &number)
 	{
 		std::cout << (n > 0 ? "+inff\n" : "-inff\n");
 	}
+
 	else
-	{
-		if (n == static_cast<int>(n))
-			std::cout << std::fixed << std::setprecision(1) << n << "f\n";
-		else
-			std::cout << n << "f\n";
-	}
+		std::cout << std::fixed << std::setprecision(lenFromPoint(number)) << n << "f\n";
 
 	// === DOUBLE ===
 	double d = static_cast<double>(n);
@@ -210,23 +230,70 @@ void desarolloFloat(const std::string &number)
 
 void desarolloDouble(const std::string &number)
 {
-	double n;
-	int len = lenFromPoint(number);
-	if (len == 0)
-		++len;
-	std::cout << std::fixed << std::setprecision(len);
+	std::cout << "DESDE DOUBLE:\n";
 
-	n = std::atof(number.c_str());
+	double d = std::strtod(number.c_str(), NULL);
 
-	if (n < 32 || n > 126)
-		std::cout << "char  : Non displayable\n";
+	// === CHAR ===
+	std::cout << "char  : ";
+	if (std::isnan(d) ||
+		static_cast<int>(d) < std::numeric_limits<char>::min() ||
+		static_cast<int>(d) > std::numeric_limits<char>::max() )
+	{
+		std::cout << "impossible\n";
+	}
+	else if (static_cast<char>(d) < 32 || static_cast<char>(d) > 126)
+	{
+		std::cout << "Non displayable\n";
+	}
 	else
-		std::cout << "char  : '" << static_cast<char>(n) << "'\n";
+	{
+		std::cout << "'" << static_cast<char>(d) << "'\n";
+	}
 
-	std::cout << "int   : " << static_cast<int>(n) << "\n"; // static cast
-	std::cout << "float : " << static_cast<float>(n) << "f\n"; // static cast
-	std::cout << "DOUBLE: " << n << "\n"; // static cast
+	// === INT ===
+	std::cout << "int   : ";
+	if (std::isnan(d) ||
+		d < std::numeric_limits<int>::min() ||
+		d > std::numeric_limits<int>::max())
+	{
+		std::cout << "impossible\n";
+	}
+	else
+	{
+		std::cout << static_cast<int>(d) << "\n";
+	}
+
+	// === FLOAT ===
+	float f = static_cast<float>(d);
+	std::cout << "float : ";
+	
+	if (std::isnan(f))
+	{
+		std::cout << "nanf\n";
+	}
+	else if (std::isinf(f))
+	{
+		std::cout << (f > 0 ? "+inff\n" : "-inff\n");
+	}
+
+	else
+		std::cout << std::fixed << std::setprecision(lenFromPoint(number)) << f << "f\n";
+
+	// === DOUBLE ===
+	std::cout << "double: ";
+	if (std::isnan(d))
+	{
+		std::cout << "nan\n";
+	}
+	else if (std::isinf(d))
+	{
+		std::cout << (d > 0 ? "+inf\n" : "-inf\n");
+	}
+	else
+		std::cout << d << "\n";
 }
+
 
 void errorMessage(const std::string &stringVal)
 {
@@ -255,172 +322,53 @@ void activateFunction(int finalState, const std::string &stringVal)
 
 // -----------------------------------------------------------------//
 
-
-
-void desarolloInff(const std::string &number)
-{
-	std::cout << "desarolloInff:\n";
-	desarolloFloat(number);
-
-
-
-	// float n;
-
-	// n = std::atof(number.c_str());
-	// std::cout << "char   : impossible\n";
-	// std::cout << "int    : impossible\n";
-	// std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-	// std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-}
-
-void desarolloInf(const std::string &number)
-{
-	std::cout << "desarolloInf:\n";
-
-	float n;
-	
-	n = std::atof(number.c_str());
-	
-	std::cout << "char   : impossible\n";
-	std::cout << "int    : impossible\n";
-	std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-	std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-}
-
-void desarolloNegInff(const std::string &number)
-{
-	std::cout << "desarolloNegInff:\n";
-
-	float n;
-
-	n = std::atof(number.c_str());
-	std::cout << "char   : impossible\n";
-	std::cout << "int    : impossible\n";
-	std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-	std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-}
-
-void desarolloNegInf(const std::string &number)
-{
-	std::cout << "desarolloNegInf:\n";
-	float n;
-
-	n = std::atof(number.c_str());
-
-	std::cout << "char   : impossible\n";
-	std::cout << "int    : impossible\n";
-	std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-	std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-}
-
-/* void desarolloNanf(const std::string &number)
-{
-	std::cout << "desarolloNanf:\n";
-	float n;
-
-	n = std::atof(number.c_str());
-	
-	std::cout << "char   : impossible\n";
-	std::cout << "int    : impossible\n";
-	
-	std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-
-	std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-} */
-
-/* void desarolloNan(const std::string &number)
-{
-	std::cout << "desarolloNan:\n";
-	float n;
-
-	n = std::atof(number.c_str());
-	
-	
-	std::cout << "char   : impossible\n";
-	std::cout << "int    : impossible\n";
-	std::cout << "float  : " << static_cast<float>(n) << "f\n"; // static cast
-	std::cout << "double : " << static_cast<double>(n) << "\n"; // static cast
-} */
-
-
 bool CheckPseudoChar(const std::string &stringVal)
 {
-	float f = std::atof(stringVal.c_str());
-
-	if (f != f)
-	{
-		desarolloFloat(stringVal);
-	}
-
-	if (f > FLT_MAX)
-	{
-		std::cout << "Number is +inf" << std::endl;
-		desarolloFloat(stringVal);
-	}
-
-	if (f < FLT_MIN)
-	{
-		std::cout << "Number is -inf" << std::endl;
-	}
-
-	if (stringVal.length() == 1 && !std::isdigit(stringVal[0]))
-	{
-		desaroChar(stringVal[0]);
-		return (true);
-	}
-	return (false);
-}
-
-
-/* bool CheckPseudoChar(const std::string &stringVal)
-{
+	// SI ES FLOAT
 	if (stringVal.length() == 5 && stringVal.compare("-inff") == 0)
 	{
-		desarolloNegInff(stringVal);
+		desarolloFloat(stringVal);
 		return (true);
 	}
 
 	else if (stringVal.length() == 5 && stringVal.compare("+inff") == 0)
 	{
-		desarolloInff(stringVal);
+		desarolloFloat(stringVal);
 		return (true);
 	}
 	
 	else if (stringVal.length() == 4 && stringVal.compare("nanf") == 0)
 	{
 		desarolloFloat(stringVal);
-
-		// desarolloNanf(stringVal);
 		return (true);
 	}
-	
+	// SI ES DOUBLE
 	else if (stringVal.length() == 3 && stringVal.compare("nan") == 0)
 	{
-		desarolloFloat(stringVal);
-		// desarolloNanf(stringVal);
+		desarolloDouble(stringVal);
 		return (true);
 	}
 
 	if (stringVal.length() == 4 && stringVal.compare("-inf") == 0)
 	{
-		desarolloNegInff(stringVal);
+		desarolloDouble(stringVal);
 		return (true);
 	}
 
 	else if (stringVal.length() == 4 && stringVal.compare("+inf") == 0)
 	{
-		desarolloInff(stringVal);
+		desarolloDouble(stringVal);
 		return (true);
 	}
 	
-
+	// SI ES CHAR
 	if (stringVal.length() == 1 && !std::isdigit(stringVal[0]))
 	{
 		desaroChar(stringVal[0]);
 		return (true);
 	}
 	return (false);
-} */
+}
 
 void ScalarConverter::convert(const std::string &stringVal)
 {
