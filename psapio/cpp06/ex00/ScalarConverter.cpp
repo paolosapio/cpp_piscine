@@ -73,18 +73,18 @@ int tokenizer2(char c) //TOKEN
 
 void desaroChar(char c)
 {
-	std::cout << "DESDE CHAR:\n";
+	// std::cout << "DESDE CHAR:\n";
 
-	std::cout << "char  : '" << c << "'\n";
+	std::cout << "CHAR  : '" << c << "'\n";
 	std::cout << "int   : " << static_cast<int>(c) << "\n"; // static cast
 	std::cout << "float : " << static_cast<float>(c) << ".0f\n"; // static cast
 	std::cout << "double: " << static_cast<double>(c) << ".0\n"; // static cast
 }
 
-// NO TERMINADA
+
 void desarolloInt(const std::string &number)
 {
-	std::cout << "DESDE INT:\n";
+	// std::cout << "DESDE INT:\n";
 	//Ya he validado que es un int:  lógica previa,
 	// aquí podemos asumir que strtol funciona bien.
 
@@ -96,34 +96,37 @@ void desarolloInt(const std::string &number)
 
 	if (tmp < std::numeric_limits<int>::min() || tmp > std::numeric_limits<int>::max())
 	{
-		std::cout << "INT ALERT: OVERFLOW O UNDERFLOW \n";
+		// std::cout << "ALERTA: OVERFLOW O UNDERFLOW \n";
 
 		std::cout << "char  : impossible\n";
-		std::cout << "int   : impossible\n";
+		std::cout << "INT   : impossible\n";
 		std::cout << "float : impossible\n";
 		std::cout << "double: impossible\n";
 		return;
 	}
 
-	int n = std::atoi(number.c_str());
+	int n = static_cast<int>(tmp);
 
 	// === CHAR ===
 	std::cout << "char  : ";
 	if (n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max())
 	{
+		// std::cout << "ALERTA: OVERFLOW O UNDERFLOW \n";
 		std::cout << "impossible\n";
 	}
+
 	else if (static_cast<char>(n) < 32 || static_cast<char>(n) > 126)
 	{
 		std::cout << "Non displayable\n";
 	}
+
 	else
 	{
 		std::cout << "'" << static_cast<char>(n) << "'\n";
 	}
 
 	// === INT ===
-	std::cout << "int   : " << n << "\n";
+	std::cout << "INT   : " << n << "\n";
 
 	// === FLOAT ===
 	std::cout << "float : " << std::fixed << std::setprecision(1)
@@ -136,10 +139,7 @@ void desarolloInt(const std::string &number)
 
 
 
-
-
-
-
+/* 
 int lenFromPoint(const std::string &number)
 {
 	int i;
@@ -149,17 +149,43 @@ int lenFromPoint(const std::string &number)
 	{}
 	if (number[i] == '\0')
 		return (1);
+
+
 	for (j = 0; number[j + i] != '\0' && number[j + i] != 'f' && number[j + i] != 'F'; ++j)
 	{}
 
 	--j;
 	return (j);
 }
+ */
+
+
+
+
+int lenFromPoint(const std::string &number)
+{
+	size_t dot = number.find('.');
+	if (dot == std::string::npos)
+		return 1;
+
+
+
+	if ((number[dot + 1] == '\0') || number[dot + 1] == 'f' || number[dot + 1] == 'F')
+		return (1);
+
+	
+	size_t end = number.find_first_of("fF", dot);
+	if (end == std::string::npos)
+		end = number.size();
+
+	return end - dot - 1;
+}
+
 
 // https://www.h-schmidt.net/FloatConverter/IEEE754.html
 void desarolloFloat(const std::string &number)
 {
-	std::cout << "DESDE FLOAT:\n";
+	// std::cout << "DESDE FLOAT:\n";
 
 	float n = std::strtof(number.c_str(), NULL);
 
@@ -194,7 +220,7 @@ void desarolloFloat(const std::string &number)
 	}
 
 	// === FLOAT ===
-	std::cout << "float : ";
+	std::cout << "FLOAT : ";
 	
 	if (std::isnan(n))
 	{
@@ -211,6 +237,7 @@ void desarolloFloat(const std::string &number)
 	// === DOUBLE ===
 	double d = static_cast<double>(n);
 	std::cout << "double: ";
+
 	if (std::isnan(d))
 	{
 		std::cout << "nan\n";
@@ -221,16 +248,16 @@ void desarolloFloat(const std::string &number)
 	}
 	else
 	{
-		if (d == static_cast<int>(d))
-			std::cout << std::fixed << std::setprecision(1) << d << "\n";
-		else
-			std::cout << d << "\n";
+		std::cout << std::fixed << std::setprecision(lenFromPoint(number)) << d << "\n";
 	}
 }
 
+
+
+
 void desarolloDouble(const std::string &number)
 {
-	std::cout << "DESDE DOUBLE:\n";
+	// std::cout << "DESDE DOUBLE:\n";
 
 	double d = std::strtod(number.c_str(), NULL);
 
@@ -281,7 +308,8 @@ void desarolloDouble(const std::string &number)
 		std::cout << std::fixed << std::setprecision(lenFromPoint(number)) << f << "f\n";
 
 	// === DOUBLE ===
-	std::cout << "double: ";
+	std::cout << "DOUBLE: ";
+
 	if (std::isnan(d))
 	{
 		std::cout << "nan\n";
@@ -291,7 +319,9 @@ void desarolloDouble(const std::string &number)
 		std::cout << (d > 0 ? "+inf\n" : "-inf\n");
 	}
 	else
-		std::cout << d << "\n";
+	{
+		std::cout << std::fixed << std::setprecision(lenFromPoint(number)) << d << "\n";
+	}
 }
 
 
