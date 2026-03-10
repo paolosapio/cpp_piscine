@@ -1,6 +1,6 @@
-NAME = Serializer
+NAME = Identify
 
-SRCS = Serializer.cpp main.cpp
+SRCS = A.cpp Base.cpp B.cpp C.cpp main.cpp
 
 CXX = c++
 
