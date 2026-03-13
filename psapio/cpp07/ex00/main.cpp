@@ -1,5 +1,20 @@
 #include "whatever.hpp"
 
+
+void f()
+{
+	base* instance = new child();
+	mother* instance_child = reinterpret_cast<mother*>(instance);
+
+	if (instance_child == NULL)
+	{
+		std::cout << "instance_child is null" << std::endl;
+		return;
+	}
+	instance_child->m();
+
+}
+
 int main(void)
 {
 	int alago = 7;
@@ -14,6 +29,14 @@ int main(void)
 	Hola<int, std::string> caca;
 	
 	Hola<int, std::string> pis;
+
+	f();
+
+	general test;
+
+	test.hola<algo>("hola raul");
+	test.hola<something>("hola raul");
+
 
 
 	caca.mafio = 7;
