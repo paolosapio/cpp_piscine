@@ -31,13 +31,13 @@ T minaolo(T &a, T &b)
 }
 
 
-template <typename T, typename S>
+template <typename Q, typename M>
 class Hola
 {
 	public:
-	T mafio;
-	T dana;
-	S bebe;
+	Q mafio;
+	Q dana;
+	M bebe;
 	
 	private:
 };
