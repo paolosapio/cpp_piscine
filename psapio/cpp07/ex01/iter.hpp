@@ -1,3 +1,5 @@
+// - ex01 → iter + función template aplicada a arrays.
+
 #ifndef ITER_HPP
 # define ITER_HPP
 

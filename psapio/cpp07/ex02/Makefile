@@ -1,6 +1,6 @@
-NAME = Bureaucrat
+NAME = array
 
-SRCS = Bureaucrat.cpp main.cpp
+SRCS = main.cpp
 
 CXX = c++
 

@@ -1,3 +1,7 @@
+// - ex02 → Clase template Array<T>.
+
+
+/* 
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
@@ -13,11 +17,8 @@ public:
 	Array();
 	Array(unsigned int nArray); //Creates an array of n elements initialized by default.
 // • Construction by copy and assignment operator. In both cases, modifying either the original array or its copy after copying musn’t affect the other array.
-
-	
-
 }
-#endif
+#endif */
 
 // Tip: Try to compile int *a = new int(); then display *a.
 
@@ -30,3 +31,46 @@ public:
 // member function takes no parameters and must not modify the current instance.
 // As usual, ensure everything works as expected and turn in a main.cpp file that con-
 // tains your tests.
+
+
+#pragma once
+#include <stdexcept>
+
+
+
+
+template <typename T>
+class Array
+{
+public:
+	Array() : _array(NULL), _size(0)
+	{}
+
+	Array(unsigned int n) : _array(new T[n]()), _size(n)
+	{}
+
+	Array(const Array& other) : _array(NULL), _size(0)
+	{
+		*this = other;
+	}
+
+	~Array()	
+	{
+		delete[] _array;
+	}
+
+	Array& operator=(const Array& other);
+	
+	T& operator[](unsigned int i);
+	
+	
+	const T& operator[](unsigned int i) const;
+	
+	unsigned int size() const;
+	
+private:
+	T*				_array;
+	unsigned int	_size;
+};
+
+#include "array.tpp"

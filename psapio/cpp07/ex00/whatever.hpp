@@ -1,3 +1,5 @@
+// - ex00 → Templates básicos (whatever.hpp, swap, min, max).
+
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
@@ -30,6 +32,15 @@ T minaolo(T &a, T &b)
 		return (a);
 	return (b); 
 }
+
+
+
+
+
+
+
+
+/* MAS COSAS RARAS! */
 
 
 template <typename Q, typename M>
