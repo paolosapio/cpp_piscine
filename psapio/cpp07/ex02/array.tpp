@@ -1,21 +1,50 @@
 #include "array.hpp"
 
+
 template <typename T>
-Array<T>& Array<T>::operator=(const Array& other)
+Array<T>::Array() : _array(NULL), _size(0)
+{}
+
+template <typename T>
+Array<T>::Array(int n)
 {
-    if (this != &other)
-    {
-        delete[] _array;
-        _size = other._size;
-        _array = (_size > 0) ? new T[_size] : NULL;
-        for (unsigned int i = 0; i < _size; i++)
-            _array[i] = other._array[i];
-    }
-    return *this;
+	int newSize = (int)n;
+	if (newSize < 0)
+	{
+		_array = NULL;
+		_size = 0;
+		return ;
+	}
+	_array = new T[n]();
+	_size = n;
+}
+
+template <typename T>
+Array<T>::Array(const Array& other) : _array(NULL), _size(0)
+{
+	*this = other;
+}
+
+template <typename T>
+Array<T>::~Array()
+{
+	delete[] _array;
 }
 
 
-
+template <typename T>
+Array<T>& Array<T>::operator=(const Array& other)
+{
+	if (this != &other)
+	{
+		delete[] _array;
+		_size = other._size;
+		_array = (_size > 0) ? new T[_size] : NULL;
+		for (unsigned int i = 0; i < _size; i++)
+			_array[i] = other._array[i];
+	}
+	return *this;
+}
 
 
 
@@ -24,9 +53,10 @@ Array<T>& Array<T>::operator=(const Array& other)
 template <typename T>
 T& Array<T>::operator[](unsigned int i)
 {
-    if (i >= _size)
-        throw std::out_of_range("Index out of range");
-    return _array[i];
+	std::cout<< i<< std::endl;
+	if (i >= _size)
+		throw std::out_of_range("Index out of range");
+	return _array[i];
 }
 
 
@@ -36,9 +66,10 @@ T& Array<T>::operator[](unsigned int i)
 template <typename T>
 const T& Array<T>::operator[](unsigned int i) const
 {
-    if (i >= _size)
-        throw std::out_of_range("Index out of range");
-    return _array[i];
+	std::cout<< i<< std::endl;
+	if (i >= _size)
+		throw std::out_of_range("Index out of range");
+	return _array[i];
 }
 
 
@@ -48,5 +79,5 @@ const T& Array<T>::operator[](unsigned int i) const
 template <typename T>
 unsigned int Array<T>::size() const
 {
-    return _size;
+	return _size;
 }
