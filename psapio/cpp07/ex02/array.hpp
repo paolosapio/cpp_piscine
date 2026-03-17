@@ -27,7 +27,7 @@ public:
 	T& operator[](unsigned int i);
 	
 	
-	const T& operator[](int i) const;
+	const T& operator[](unsigned int i) const;
 	
 	unsigned int size() const;
 	

@@ -1,23 +1,5 @@
 #include "iter.hpp"
-
-template <typename T>
-void print_array_element(T &array)
-{
-	std::cout << array << "\n";
-}
-
-
-
-template <typename T, typename F>
-void iter(T *array, int length, F func)
-{
-    for (int i = 0; i < length; i++)
-    {
-        func(array[i]);
-    }
-}
-
-
+#include <string>
 
 int main(void)
 {
@@ -25,9 +7,12 @@ int main(void)
 	int numeros[] = {0, 2, -2, 7};
 	bool interuptor[] = {false, true};
 
-	iter('a', 1, toupper);
-	// iter(numeros, 4, toupper);
-	// iter(interuptor, 2, toupper);
+
+	iter(palabras, 3, print_array_element);
+	iter(numeros, 4, print_array_element);
+	iter(interuptor, 2, print_array_element);
 	
 	return (0);
 }
+
+

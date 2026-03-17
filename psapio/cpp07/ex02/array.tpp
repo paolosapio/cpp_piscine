@@ -6,15 +6,11 @@ Array<T>::Array() : _array(NULL), _size(0)
 {}
 
 template <typename T>
-Array<T>::Array(int n)
+Array<T>::Array(unsigned int n)
 {
-	int newSize = (int)n;
-	if (newSize < 0)
-	{
-		_array = NULL;
-		_size = 0;
-		return ;
-	}
+	int int_aux = n;
+
+
 	_array = new T[n]();
 	_size = n;
 }
@@ -53,9 +49,8 @@ Array<T>& Array<T>::operator=(const Array& other)
 template <typename T>
 T& Array<T>::operator[](unsigned int i)
 {
-	std::cout<< i<< std::endl;
 	if (i >= _size)
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index fuera de rango");
 	return _array[i];
 }
 
@@ -66,9 +61,8 @@ T& Array<T>::operator[](unsigned int i)
 template <typename T>
 const T& Array<T>::operator[](unsigned int i) const
 {
-	std::cout<< i<< std::endl;
 	if (i >= _size)
-		throw std::out_of_range("Index out of range");
+		throw std::out_of_range("Index fuera de rango");
 	return _array[i];
 }
 
