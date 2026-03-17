@@ -6,13 +6,13 @@ Array<T>::Array() : _array(NULL), _size(0)
 {}
 
 template <typename T>
-Array<T>::Array(unsigned int n)
+Array<T>::Array(int n)
 {
-	int int_aux = n;
+    if (n < 0)
+        throw std::out_of_range("Array negativo, no puede ser");
 
-
-	_array = new T[n]();
-	_size = n;
+    _array = new T[n]();
+    _size = n;
 }
 
 template <typename T>

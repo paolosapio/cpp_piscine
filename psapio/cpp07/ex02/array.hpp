@@ -16,7 +16,7 @@ private:
 public:
 	Array();
 
-	Array(unsigned int n);
+	Array(int n);
 
 	Array(const Array& other);
 
