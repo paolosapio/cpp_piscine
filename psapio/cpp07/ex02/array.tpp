@@ -35,6 +35,7 @@ Array<T>& Array<T>::operator=(const Array& other)
 	{
 		delete[] _array;
 		_size = other._size;
+		
 		_array = (_size > 0) ? new T[_size] : NULL;
 		for (unsigned int i = 0; i < _size; i++)
 			_array[i] = other._array[i];
