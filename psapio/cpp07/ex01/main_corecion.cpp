@@ -38,8 +38,8 @@ int main() {
 
 	const int len = 5;
 
-	iter( tab, len, print<const int> );
 	iter( tab2, len, print<Awesome> );
+	iter( tab, len, print<const int> );
 
 	return 0;
 }

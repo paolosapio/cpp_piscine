@@ -17,7 +17,8 @@ int main() {
     }
 	catch (std::exception &e)
 	{
-        std::cout << "Error capturado: " << e.what() << std::endl;
+        std::cerr << e.what() << "\n";
+
     }
 
 
@@ -29,6 +30,7 @@ int main() {
 		std::cout << "b[" << i << "] = " << b[i] << "\n";
 	
 
+
 	// Test copia
 	Array<unsigned int> c(b);
 	std::cout << "c.size() = " << c.size() << "\n";
@@ -36,17 +38,21 @@ int main() {
 	for (unsigned int i = 0; i < c.size(); i++)
 		std::cout << "c[" << i << "] = " << c[i] << "\n";
 
+
 	// Modificar c no afecta b
 	c[0] = 999;
 	std::cout << "c[0] = " << c[0] << "\n";
 	std::cout << "b[0] = " << b[0] << " (debe seguir igual)\n";
 
+
 	// Test operador de asignación
 	Array<unsigned int> d;
 	d = b;
 
+
 	for (unsigned int i = 0; i < d.size(); i++)
 		std::cout << "d[" << i << "] = " << d[i] << "\n";
+
 
 	// Test excepción por índice fuera de rango
 	try
@@ -55,8 +61,9 @@ int main() {
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Excepción capturada: índice fuera de rango\n";
+		std::cerr << e.what() << "\n";
 	}
+
 
 	return (0);
 }

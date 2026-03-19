@@ -3,7 +3,7 @@
 #pragma once
 
 #include <stdexcept>
-
+#include <iostream>
 
 template <typename T>
 class Array
@@ -24,13 +24,15 @@ public:
 
 	Array& operator=(const Array& other);
 	
-	T& operator[](unsigned int i);
-	
-	
-	const T& operator[](unsigned int i) const;
+	T& operator[](int i);
 	
 	unsigned int size() const;
-	
+
+	class OutOfRange : public std::exception
+	{
+		public:
+			virtual const char *what() const throw();
+	};
 };
 
 #include "array.tpp"

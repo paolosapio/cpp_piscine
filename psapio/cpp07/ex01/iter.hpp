@@ -4,15 +4,24 @@
 
 #include <iostream>
 
-// imprime un elemento por const referencia
+//imprime un elemento
 template <typename T>
-void print_array_element(const T &elementos)
+void print_array_element(T& elementos)
 {
     std::cout << elementos << "\n";
 }
 
+
+
 template <typename T>
-void iter(T *array, int length, void (*func)(T const &))
+void iter(T *array, int length, void (*func)(T &))
+{
+    for (int i = 0; i < length; i++)
+        func(array[i]);
+}
+
+template <typename T>
+void iter(T *array, int length, void (*func)( const T &))
 {
     for (int i = 0; i < length; i++)
         func(array[i]);
