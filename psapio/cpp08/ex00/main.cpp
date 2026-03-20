@@ -1,9 +1,27 @@
+
 #include "easyfind.hpp"
-#include <iostream>
-#include <string>
 
-int main(void)
+int main()
 {
+	try
+	{
+		srand(time(NULL));
 
-    return (0);
+		std::vector<int> vectorToCheck;
+		for (int i = 0; i < 5; i++)
+		{
+			int randNum = rand() % 5;
+			std::cout << "Added to the vector[" << i << "] > " << randNum << std::endl;
+			vectorToCheck.push_back(randNum);
+		}
+
+		int randNumToBeFound = rand() % 7;
+
+		std::cout << "Trying to find in the vector value >> " << randNumToBeFound << std::endl;
+		easyfind(vectorToCheck, randNumToBeFound);
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
