@@ -19,7 +19,7 @@ private:
 
 };
 
-std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+std::ostream & operator<<( std::ostream &o, Awesome const &rhs ) // rhs es el objeto del lado derecho
 {
 	o << rhs.get();
 	return o;

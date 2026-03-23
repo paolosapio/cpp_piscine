@@ -49,7 +49,9 @@ public:
 template <typename T>
 void easyfind(T container, int toBeFound);
 
-class ValueNotFound : public std::exception {
-  virtual const char *what() const throw();
+class ValueNotFound : public std::exception
+{
+	virtual const char *what() const throw();
 };
+
 #include "easyfind.tpp"
