@@ -1,5 +1,6 @@
 #include "span.hpp"
 #include <stdexcept>
+#include <climits>
 
 
 Span::Span() : n_(0)
@@ -22,6 +23,7 @@ Span &Span::operator=(Span const &rhs)
 	this->n_ = rhs.n_;
 
 	this->int_vector = rhs.int_vector;
+	return (*this);
 }
 
 
@@ -52,21 +54,29 @@ int Span::longestSpan()
 	return (max - min);
 }
 
-// 7 3 9 6 10 1
-int low_range_find(std::vector<int> int_vector, int index_contenedor)
-{
-	int lower_value;
-	int i = 0;
 
-	while (i != int_vector.size())
+
+
+
+
+
+// 7 3 9 6 10 1
+// 1 17 101
+int low_range_find(std::vector<int> int_vector)
+{
+
+
+	int lower_value = INT_MAX;
+	
+	int i = 0;
+	while (i < static_cast<int>(int_vector.size()) - 1)
 	{
-		int j = 0;
-		while (j != int_vector.size())
+		int j = i + 1;
+
+		while (j != static_cast<int>(int_vector.size()))
 		{
-			if (int_vector[i] < int_vector[j])
-				lower_value = int_vector[i];
-			else
-				lower_value = int_vector[j];
+			if (std::abs(int_vector[i] - int_vector[j]) < lower_value)
+				lower_value = std::abs(int_vector[i] - int_vector[j]);
 			j++;
 		}
 		i++;
@@ -76,14 +86,8 @@ int low_range_find(std::vector<int> int_vector, int index_contenedor)
 
 int Span::shortestSpan()
 {
-	int low_n_find;
-
 	if (int_vector.size() < 2)
 		throw std::length_error("[ERROR]: contenedor con meno de 2 numeros!");
 
-	
-	for (int index_contenedor = *int_vector.begin(); index_contenedor > 0; index_contenedor--)
-	{
-		low_n_find = low_range_find(int_vector, index_contenedor);
-	}
+	return (low_range_find(int_vector));
 }

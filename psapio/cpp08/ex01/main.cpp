@@ -1,27 +1,18 @@
-
-#include "easyfind.hpp"
-
+#include "span.hpp"
+#include <iostream>
 int main()
 {
-	try
-	{
-		srand(time(NULL));
+	Span test1(7);
 
-		std::vector<int> vectorToCheck;
-		for (int i = 0; i < 5; i++)
-		{
-			int randNum = rand() % 5;
-			std::cout << "Added to the vector[" << i << "] > " << randNum << std::endl;
-			vectorToCheck.push_back(randNum);
-		}
+	test1.addNumber(-01);
+	test1.addNumber(-10);
+	test1.addNumber(-11);
 
-		int randNumToBeFound = rand() % 7;
 
-		std::cout << "Trying to find in the vector value >> " << randNumToBeFound << std::endl;
-		easyfind(vectorToCheck, randNumToBeFound);
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
+	std::cout << test1.longestSpan() << "\n";
+	std::cout << test1.shortestSpan() << "\n";
+
+
+
+	return (0);
 }
