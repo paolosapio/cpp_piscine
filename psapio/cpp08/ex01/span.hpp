@@ -1,6 +1,6 @@
 #pragma once
 
-#include  <exception>
+#include <exception>
 #include <algorithm>
 #include <vector>
 
@@ -20,4 +20,5 @@ public:
 	void addNumber(int n_to_add);
 	int longestSpan();
 	int shortestSpan();
+	void addRangereitor(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };

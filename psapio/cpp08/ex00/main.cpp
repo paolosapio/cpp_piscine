@@ -9,7 +9,7 @@ int main()
 		std::vector<int> vectorToCheck;
 		for (int i = 0; i < 5; i++)
 		{
-			int randNum = rand() % 5;
+			int randNum = i;
 			std::cout << "Added to the vector[" << i << "] > " << randNum << std::endl;
 			vectorToCheck.push_back(randNum);
 		}

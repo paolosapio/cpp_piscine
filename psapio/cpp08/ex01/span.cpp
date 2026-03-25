@@ -1,6 +1,7 @@
 #include "span.hpp"
 #include <stdexcept>
 #include <climits>
+#include <iostream>
 
 
 Span::Span() : n_(0)
@@ -34,7 +35,7 @@ Span::~Span()
 
 /* ------------------METODOS-------------------- */
 
-
+/* ADDERs */
 void Span::addNumber(int n_to_add)
 {
 	if (this->int_vector.size() < this->n_)
@@ -43,6 +44,24 @@ void Span::addNumber(int n_to_add)
 		throw std::runtime_error("[ERROR]: demasidos numeroos!");
 }
 
+void Span::addRangereitor(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+	if (this->n_ - int_vector.size() >= (unsigned int)(end - begin))
+		this->int_vector.insert(this->int_vector.begin(), begin, end);
+	else
+		throw std::runtime_error("[ERROR]: demasidos numeros!");
+
+
+}
+
+
+
+
+
+
+
+
+/* longestSpan */
 int Span::longestSpan()
 {
 	if (int_vector.size() < 2)
@@ -56,16 +75,9 @@ int Span::longestSpan()
 
 
 
-
-
-
-
-// 7 3 9 6 10 1
-// 1 17 101
+/* shortestSpan */
 int low_range_find(std::vector<int> int_vector)
 {
-
-
 	int lower_value = INT_MAX;
 	
 	int i = 0;

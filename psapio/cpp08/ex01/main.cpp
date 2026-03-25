@@ -1,17 +1,42 @@
 #include "span.hpp"
 #include <iostream>
+#include <stdexcept>
+
+#define SIZE 100000
+
 int main()
 {
-	Span test1(7);
+	std::srand(time(NULL));
 
-	test1.addNumber(-01);
-	test1.addNumber(-10);
-	test1.addNumber(-11);
+	Span container(SIZE);
 
+	int	arr[SIZE];
 
-	std::cout << test1.longestSpan() << "\n";
-	std::cout << test1.shortestSpan() << "\n";
+	int i = 0;
+	while (i < SIZE)
+	{
+		arr[i] = std::rand() % SIZE;
+		i++;
+	}
+	
+	
+	std::vector<int> range(arr, arr + sizeof(arr) / sizeof(arr[0]));
+	try
+	{
+		container.addRangereitor(range.begin(), range.end());
+	}
+	catch(std::exception &e)
+	{
+		std::cout << e.what() << "\n";
+	}
 
+	
+	// test1.addNumber();
+	// test1.addNumber();
+	// test1.addNumber();
+
+	std::cout << container.longestSpan() << ": longestSpan\n";
+	std::cout << container.shortestSpan() << ": shortestSpan\n";
 
 
 	return (0);
