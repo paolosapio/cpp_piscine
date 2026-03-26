@@ -22,4 +22,7 @@ public:
 
 	// iterators(?); NO ES UN METODO! OJO!
 
+	
 };
+
+#include "MutantStack.tpp"
