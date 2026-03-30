@@ -1,28 +1,22 @@
 #pragma once
 
-#include <exception>
-#include <algorithm>
-#include <vector>
-#include <iostream>
-#include <stack>
+# include <iostream>
+# include <stack>
+# include <vector>
 
 template <typename T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack<T, std::deque<T> >
 {
-private:
-	unsigned int n_;
-	std::vector<int> int_vector;
-
 public:
 	MutantStack();
-	MutantStack(unsigned int n);
-	MutantStack(MutantStack &other);
-	MutantStack &operator=(MutantStack const &rhs); // rhs es el objeto del lado derecho
+	MutantStack(const MutantStack &other);
+	MutantStack &operator=(const MutantStack &rhs);// rhs es el objeto del lado derecho
 	~MutantStack();
 
-	// iterators(?); NO ES UN METODO! OJO!
+	typedef typename std::deque<T>::iterator iterator;
 
-	
+	iterator begin();
+	iterator end();
 };
 
-#include "MutantStack.tpp"
+# include "mutantstack.tpp"
