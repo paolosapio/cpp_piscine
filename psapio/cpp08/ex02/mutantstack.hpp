@@ -13,10 +13,19 @@ public:
 	MutantStack &operator=(const MutantStack &rhs);// rhs es el objeto del lado derecho
 	~MutantStack();
 
+
+
 	typedef typename std::deque<T>::iterator iterator;
 
 	iterator begin();
 	iterator end();
+
+
+
+	typedef typename std::deque<T>::const_iterator const_iterator;
+
+	const_iterator begin() const;
+	const_iterator end() const;
 };
 
 # include "mutantstack.tpp"
