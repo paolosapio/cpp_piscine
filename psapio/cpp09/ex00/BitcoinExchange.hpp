@@ -26,25 +26,26 @@ El truco central del ejercicio es usar map::lower_bound(date) para encontrar la 
 */
 
 
-
 #pragma once
 
 #include <map>
 #include <string>
 
-class BitcoinExchange {
-public:
-    BitcoinExchange();
-    BitcoinExchange(const BitcoinExchange& other);
-    BitcoinExchange& operator=(const BitcoinExchange& other);
-    ~BitcoinExchange();
-
-    void loadDatabase(const std::string& filename);
-    void processInput(const std::string& filename) const;
-
+class BitcoinExchange
+{
 private:
-    std::map<std::string, float> _db;
+	std::map<std::string, float> _db;
 
-    bool  isValidDate(const std::string& date) const;
-    float getRate(const std::string& date) const;
+	bool  isValidDate(const std::string& date) const;
+	float getbitCoinValue(const std::string& date) const;
+	bool check_input(const std::string &date, const std::string &value) const;
+
+public:
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& other);
+	BitcoinExchange& operator=(const BitcoinExchange& other);
+	~BitcoinExchange();
+
+	void loadDatabase(const std::string& filename); //
+	void processInput(const std::string& filename) const;
 };
