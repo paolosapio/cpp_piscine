@@ -14,12 +14,20 @@ private:
 	void somma();
 	void sottrazione();
 
-public:
+	
+	public:
 	Rpn();
 	Rpn(const Rpn& other);
 	Rpn& operator=(const Rpn& other);
 	~Rpn();
+
+	bool StringStreaMeador(char *stringValues);
+
+	int getValueStack() const;
 };
+
+
+
 
 /* 
 El algoritmo RPN
@@ -41,5 +49,4 @@ El algoritmo que utilizan las calculadoras RPN es relativamente simple:
 		El valor de ese elemento es el resultado del cálculo.
 	Si hay más de un elemento en la pila:
 		(Error) El usuario ha introducido demasiados elementos.
-
 */

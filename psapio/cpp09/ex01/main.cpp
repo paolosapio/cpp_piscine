@@ -13,7 +13,10 @@ int main(int argn, char **argv)
 		std::cout << "error args!\n";
 		return (1);
 	}
-	char *a
-	validate_arg()
+
+	Rpn stack;
+
+	if (stack.StringStreaMeador(argv[1]) == true)
+		std::cout << stack.getValueStack() << "\n";
 	return (0);
 }

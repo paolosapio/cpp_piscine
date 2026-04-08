@@ -6,9 +6,13 @@
 #include <cstdlib>
 #include <iomanip>      // setprecision, fixed
 
-BitcoinExchange::BitcoinExchange() {}
+/* ************CONSTRUCTORES************** */
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : _db(o._db) {}
+BitcoinExchange::BitcoinExchange()
+{}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& o) : _db(o._db)
+{}
 
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o)
 {
@@ -18,6 +22,10 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& o)
 
 BitcoinExchange::~BitcoinExchange()
 {}
+
+
+/* ************METODOS************** */
+
 
 void BitcoinExchange::loadDatabase(const std::string& pathMameCSV)
 {
@@ -81,6 +89,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 }
 
 
+
 float BitcoinExchange::getbitCoinValue(const std::string& date) const
 {
 	std::map<std::string, float>::const_iterator it = _db.lower_bound(date);
@@ -126,17 +135,17 @@ bool BitcoinExchange::check_input(const std::string &date, const std::string &va
 	
 	if (*end != '\0' || valStr.empty())
 	{
-		std::cout << "Error: bad input => " << valStr << std::endl;
+		std::cout << "Error: bad input => " << valStr << "\n";
 		return (false);
 	}
 	if (val < 0)
 	{
-		std::cout << "Error: not a positive number." << std::endl;
+		std::cout << "Error: not a positive number." << "\n";
 		return (false);
 	}
 	if (val > 1000)
 	{
-		std::cout << "Error: too large a number." << std::endl;
+		std::cout << "Error: too large a number." << "\n";
 		return (false);
 	}
 	return (true);
@@ -166,7 +175,7 @@ void BitcoinExchange::processInput(const std::string& pathMameCSV) const
 		try
 		{
 			float bitCoinValue = getbitCoinValue(date);
-			std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(1) << std::strtof(value.c_str(), NULL) * bitCoinValue << std::endl;
+			std::cout << date << " => " << value << " = " << std::fixed << std::setprecision(1) << std::strtof(value.c_str(), NULL) * bitCoinValue << "\n";
 		}
 		catch (std::exception& e)
 		{
