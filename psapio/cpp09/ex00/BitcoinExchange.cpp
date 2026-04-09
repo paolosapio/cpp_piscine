@@ -27,9 +27,9 @@ BitcoinExchange::~BitcoinExchange()
 /* ************METODOS************** */
 
 
-void BitcoinExchange::loadDatabase(const std::string& pathMameCSV)
+void BitcoinExchange::loadDatabase(const std::string& pathNameCSV)
 {
-	std::ifstream fileCSV(pathMameCSV.c_str());
+	std::ifstream fileCSV(pathNameCSV.c_str());
 	if (!fileCSV.is_open())
 		throw std::runtime_error("Error: could not open database.");
 
@@ -93,7 +93,7 @@ bool BitcoinExchange::isValidDate(const std::string& date) const
 float BitcoinExchange::getbitCoinValue(const std::string& date) const
 {
 	std::map<std::string, float>::const_iterator it = _db.lower_bound(date);
-	if (it == _db.end() || it->first != date)
+	if (it == _db.end() || it->first != date) // si no se encuentra una fecha
 	{
 		if (it == _db.begin())
 			throw std::runtime_error("Error: no data for date => " + date);
@@ -130,9 +130,10 @@ bool BitcoinExchange::check_input(const std::string &date, const std::string &va
 		return (false);
 
 	// Validar valor
-	char* end;
+	char *end;
 	double val = std::strtod(valStr.c_str(), &end);
-	
+	std::cout << end << " end\n";
+
 	if (*end != '\0' || valStr.empty())
 	{
 		std::cout << "Error: bad input => " << valStr << "\n";
@@ -153,9 +154,9 @@ bool BitcoinExchange::check_input(const std::string &date, const std::string &va
 
 
 
-void BitcoinExchange::processInput(const std::string& pathMameCSV) const
+void BitcoinExchange::processInput(const std::string& pathNameCSV) const
 {
-	std::ifstream fileCSV(pathMameCSV.c_str());
+	std::ifstream fileCSV(pathNameCSV.c_str());
 	if (!fileCSV.is_open())
 		throw std::runtime_error("Error: could not open fileCSV.");
 

@@ -25,10 +25,23 @@ int Rpn::getValueStack() const
 
 
 
+/* ********CHECK STACK******** */
+
+void Rpn::checkStack()
+{
+	if (_contenedor.size() < 2)
+	{
+		std::cerr << "he! tiene que poner algun numerito mas?!\n";
+		exit(1);
+	}
+}
+
 /* ********OPERACIONES******** */
 
 void Rpn::moltiplicazione()
 {
+	checkStack();
+
 	int a = _contenedor.top();
 			_contenedor.pop();
 
@@ -38,19 +51,26 @@ void Rpn::moltiplicazione()
 	_contenedor.push(b * a);
 }
 
-void Rpn::divisione()
+bool Rpn::divisione()
 {
+	checkStack();
+
 	int a = _contenedor.top();
-			_contenedor.pop();
+	if (a == 0)
+		return (false);
+	else
+		_contenedor.pop();
 
 	int b = _contenedor.top();
 			_contenedor.pop();
-		
+	
 	_contenedor.push(b / a);
+	return (true);
 }
 
 void Rpn::somma()
 {
+	checkStack();
 	int a = _contenedor.top();
 			_contenedor.pop();
 
@@ -62,6 +82,7 @@ void Rpn::somma()
 
 void Rpn::sottrazione()
 {
+	checkStack();
 	int a = _contenedor.top();
 			_contenedor.pop();
 
@@ -82,17 +103,25 @@ bool Rpn::StringStreaMeador(char *stringValues)
 
 	while (iss >> token)
 	{
+
 		if (token == "*")
-			Rpn::moltiplicazione();
+			moltiplicazione();
 			
 		else if (token == "/")
-			Rpn::divisione();
+		{
+			if(divisione() == false)
+			{
+
+				std::cout << "Division entre <0> IMPOSIBLE\n";
+				return (false);
+			}
+		}
 
 		else if (token == "+")
-			Rpn::somma();
+			somma();
 
 		else if (token == "-")
-			Rpn::sottrazione();
+			sottrazione();
 		
 		else
 		{

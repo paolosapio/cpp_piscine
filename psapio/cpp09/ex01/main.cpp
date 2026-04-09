@@ -1,11 +1,6 @@
 #include "RPN.hpp"
 #include <iostream>
 
-
-
-
-
-
 int main(int argn, char **argv)
 {
 	if (argn != 2)
