@@ -18,7 +18,7 @@ class PmergeMe
 
 	public:
 
-}
+};
 
 
 
@@ -96,8 +96,7 @@ public:
 /* >
 ./PmergeMe 3 5 9 7 4
 Before: 3 5 9 7 4
-After:
-3 4 5 7 9
+After : 3 4 5 7 9
 Time to process a range of 5 elements with std::[..] : 0.00031 us
 Time to process a range of 5 elements with std::[..] : 0.00014 us
 $> ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
@@ -112,8 +111,8 @@ Error
 
 
 
-/*
-3 7 2 105 66 8 10 54 92 13
+
+/* 3 7 2 105 66 8 10 54 92 13
 3 7 2 105 8 66 10 54 13 92
  7   105   66    54    92
  7   105   45    66    92
