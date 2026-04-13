@@ -7,17 +7,19 @@
 
 
 
-
-
-
-
-
 class PmergeMe
 {
-	private:
+private:
+	std::vector<int> _vector;
 
-	public:
+public:
+	PmergeMe();
+	PmergeMe(const PmergeMe &other);
+	PmergeMe &operator=(const PmergeMe &other);
+	~PmergeMe();
 
+	void setVector(const int value);
+	void printVector();
 };
 
 

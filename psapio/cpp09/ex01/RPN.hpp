@@ -18,7 +18,7 @@ private:
 public:
 	Rpn();
 	Rpn(const Rpn& other);
-	Rpn& operator=(const Rpn& other);
+	Rpn &operator=(const Rpn &other);
 	~Rpn();
 
 	bool StringStreaMeador(char *stringValues);

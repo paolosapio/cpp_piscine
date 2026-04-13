@@ -55,20 +55,22 @@ int main(int argc, char **argv)
 	if (check_if_more_two_args(argc) == false)
 		return (1);
 
-for (int i = 1; i < argc; i++)
-{
-    std::istringstream iss(argv[i]);
-    std::string token;
+	PmergeMe mem;
 
-    while (iss >> token)
-    {
-        int number;
-        if (!safe_convert(token, number))
-            return (1);
+	for (int i = 1; i < argc; i++)
+	{
+		std::istringstream iss(argv[i]);
+		std::string token;
 
-        std::cout << number << " ";
-    }
-}
+		while (iss >> token)
+		{
+			int number;
+			if (!safe_convert(token, number))
+				return (1);
+			mem.setVector(number);
+		}
+	}
+	mem.printVector();
 	std::cout <<  "\n";
 	return (0);
 }
