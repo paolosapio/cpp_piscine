@@ -4,7 +4,7 @@
 #include <string>
 #include <cstdlib>
 #include <limits>
-
+#include <set>
 
 bool check_if_more_two_args(int argc)
 {
@@ -50,6 +50,81 @@ bool safe_convert(const std::string &token, int &number)
 }
 
 
+bool tieneDuplicados(std::istream& in)
+{
+	std::set<int> enteros;
+	int n;
+
+	while (in >> n)
+	{
+		if (enteros.count(n))
+		{
+			std::cerr << "numero duplicado encontrato: " << n << "\n";
+			return true; // duplicado encontrado
+		}
+		enteros.insert(n);
+	}
+	return false;
+}
+
+
+
+void PmergeMe::sortDeque()
+{
+    // temporalmente vacío
+}
+
+
+int main(int argc, char **argv)
+{
+	if (check_if_more_two_args(argc) == false)
+		return (1);
+
+	PmergeMe mem;
+
+	std::stringstream ss;
+
+	// Primero metemos TODOS los números en un solo flujo
+	for (int i = 1; i < argc; i++)
+		ss << argv[i] << " ";
+
+	// Ahora sí: detectamos duplicados una sola vez
+	if (tieneDuplicados(ss))
+		return (1);
+
+	// Reiniciamos el flujo para volver a leerlo
+	ss.clear();
+	ss.seekg(0);
+
+	// Ahora convertimos y guardamos
+	std::string token;
+	while (ss >> token)
+	{
+		int number;
+		if (!safe_convert(token, number))
+			return (1);
+		mem.setContainers(number);
+	}
+	
+	mem.sortVector();
+
+	mem.printVector();
+	mem.printDeque();
+	std::cout << "\n";
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* 
+
 int main(int argc, char **argv)
 {
 	if (check_if_more_two_args(argc) == false)
@@ -64,6 +139,7 @@ int main(int argc, char **argv)
 
 		while (iss >> token)
 		{
+			tieneDuplicados(iss);
 			int number;
 			if (!safe_convert(token, number))
 				return (1);
@@ -74,3 +150,5 @@ int main(int argc, char **argv)
 	std::cout <<  "\n";
 	return (0);
 }
+
+ */
