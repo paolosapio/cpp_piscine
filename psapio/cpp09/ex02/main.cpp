@@ -71,7 +71,12 @@ bool tieneDuplicados(std::istream& in)
 
 void PmergeMe::sortDeque()
 {
-    // temporalmente vacío
+	std::vector<int> tmp(_deque.begin(), _deque.end());
+
+	tmp = fordJohnson(tmp);
+
+	_deque.clear();
+	_deque.insert(_deque.end(), tmp.begin(), tmp.end());
 }
 
 
@@ -107,6 +112,7 @@ int main(int argc, char **argv)
 	}
 	
 	mem.sortVector();
+	mem.sortDeque();
 
 	mem.printVector();
 	mem.printDeque();
